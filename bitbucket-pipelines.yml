@@ -10,7 +10,7 @@ pipelines:
           - mysql
           - redis
         script:
-          - pushd 09_laravel_tdd/project/
+          - pushd Witryna/project/
           -   composer install
           -   cp .env.example .env
           -   php artisan key:generate
