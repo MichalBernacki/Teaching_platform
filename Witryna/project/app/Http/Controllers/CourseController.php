@@ -12,6 +12,10 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $courses = Course::all();
@@ -52,8 +56,6 @@ class CourseController extends Controller
     {
         $user = \DB::table('users')->where('id',$id)->first();
         $courses = Course::where('lecturer_id',$user->id)->get();
-        dump($user);
-        dump($courses);
         return view('courses.show',['courses'=>$courses,'user'=>$user]);
     }
 

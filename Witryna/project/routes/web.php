@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CommentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,11 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/comments', App\Http\Controllers\CommentController::class);
-
-Route::resource('/courses', App\Http\Controllers\CourseController::class);
-Route::get('/courses/{id}',[CourseController::class,'show'])->middleware('auth');
-
+Route::resource('comments',CommentController::class);
+Route::resource('courses' ,CourseController::class);
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
