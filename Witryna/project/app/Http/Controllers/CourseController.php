@@ -67,7 +67,8 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        //
+        $course = Course::find($id);
+        return view('courses.edit')->withCourse($course);
     }
 
     /**
@@ -77,9 +78,16 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Course $course)
     {
-        //
+        request()->validate([
+            'name' => ['required'],
+            'description' => ['required']
+        ]);
+        $course->name = request('name');
+        $course->description = request('description');
+        $course->update();
+        return redirect()->route('courses.index');
     }
 
     /**

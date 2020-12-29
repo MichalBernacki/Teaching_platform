@@ -6,16 +6,27 @@
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <h1>{{$user->name}} courses:</h1> <br>
-            @foreach ($courses as $course)
-                <li>
+            <table>
+            @foreach ($courses as $key=>$course)
+                <tr>
+                    <td>
+                        {{$key+1}}
+                    </td>
                     <td>
                         {{$course->name}}
                     </td>
                     <td>
                         {{$course->description}}
                     </td>
-                </li>
+                    <td>
+                        <a href="">List of students</a>
+                    </td>
+                    <td>
+                        <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
+                    </td>
+                </tr>
             @endforeach
+            </table>
         </div>
     </div>
 </x-guest-layout>
