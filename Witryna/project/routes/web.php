@@ -22,9 +22,8 @@ Route::resource('comments', CommentController::class);
 
 Route::resource('courses', CourseController::class);
 
-Route::post('/courses/create', [CourseController::class, 'store']); //to jest do ew modyfikacji tylko jeszcze nie wiem jak
-Route::get('/courses/create', [CourseController::class, 'create']);
-
+//Route::post('/courses/create', [CourseController::class, 'store']); //juz dziala ale na razie zostawiam
+//Route::get('/courses/create', [CourseController::class, 'create']);
 
 
 Route::get('/dashboard', function () {

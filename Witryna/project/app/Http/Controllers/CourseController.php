@@ -59,7 +59,7 @@ class CourseController extends Controller
 
         $course->save();
 
-        return redirect('/courses');
+        return redirect()->route('courses.index', ['course' => $course]);
     }
 
     /**
