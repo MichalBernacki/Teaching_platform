@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
 {
     /**
@@ -13,7 +14,11 @@ class CourseController extends Controller
      */
     public function index()
     {
-        //
+        $courses = Course::all();
+        if(Auth::check()) {
+            return view('courses.index')->withCourses($courses);
+        }
+        return view('auth.login');
     }
 
     /**
@@ -45,7 +50,11 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        //
+        $user = \DB::table('users')->where('id',$id)->first();
+        $courses = Course::where('lecturer_id',$user->id)->get();
+        dump($user);
+        dump($courses);
+        return view('courses.show',['courses'=>$courses,'user'=>$user]);
     }
 
     /**
