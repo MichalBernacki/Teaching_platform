@@ -17,17 +17,6 @@ class UsersController extends Controller
         return view('deansoffice.users')->withUsers($users);
     }
 
-    public function change($id)
-    {
-        $user=User::find($id);
-        return view('deansoffice.changerole')->withUser($user);
-    }
-
-    public function changerole(Request $request, $id)
-    {
-        User::where('id',$id)->update(['role_id'=>request('opt')]);
-        return redirect('/users');
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -63,24 +52,26 @@ class UsersController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\User $user
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
         //
+        return view('deansoffice.changerole')->withUser($user);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int $id
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        User::where('id',$id)->update(['role_id'=>request('opt')]);
+        return redirect('/users');
     }
 
     /**

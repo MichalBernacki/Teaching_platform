@@ -19,8 +19,8 @@ Route::get('/', function () {
 
 Route::resource('/comments', App\Http\Controllers\CommentController::class);
 Route::resource('/users', App\Http\Controllers\UsersController::class);
-Route::post('/users/{id}/changerole',[App\Http\Controllers\UsersController::class,'changerole'])->middleware('auth');
-Route::get('/users/{id}/changerole',[App\Http\Controllers\UsersController::class,'change'])->middleware('auth');
+Route::post('/users/{id}/update',[App\Http\Controllers\UsersController::class,'update'])->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
