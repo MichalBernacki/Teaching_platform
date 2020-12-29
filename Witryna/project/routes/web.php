@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CommentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +18,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/comments', App\Http\Controllers\CommentController::class);
+Route::resource('comments', CommentController::class);
 
-Route::resource('/courses', App\Http\Controllers\CourseController::class)->middleware(['auth']);
+Route::resource('courses', CourseController::class);
 
-Route::post('/courses/create', [App\Http\Controllers\CourseController::class, 'store'])->middleware(['auth']);
-Route::get('/courses/create', [App\Http\Controllers\CourseController::class, 'create'])->middleware(['auth']);
+Route::post('/courses/create', [CourseController::class, 'store']); //to jest do ew modyfikacji tylko jeszcze nie wiem jak
+Route::get('/courses/create', [CourseController::class, 'create']);
 
 
 
