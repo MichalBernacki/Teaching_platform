@@ -19,6 +19,9 @@ Route::get('/', function () {
 
 Route::resource('/comments', App\Http\Controllers\CommentController::class);
 
+Route::resource('/courses', App\Http\Controllers\CourseController::class)->middleware(['auth']);
+//Route::resource('/courses/create', 'CourseController@create')->middleware(['auth']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
