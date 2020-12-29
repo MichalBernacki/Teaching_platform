@@ -158,7 +158,7 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `role_id` bigint unsigned NOT NULL,
+  `role_id` bigint unsigned NOT NULL DEFAULT '1',
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
@@ -175,7 +175,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$.WvK3tCJNoobAysQgTZl2u8.4Y19Mz5FEJZDTGbJMxAapK29.ROGS',1,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$1BqofbZuVGBQtDEyb.9HYeqP6U67Nq9HCoktZ1/imdSNVkzuw59Yy',1,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -188,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-29 15:24:16
+-- Dump completed on 2020-12-29 16:10:27
