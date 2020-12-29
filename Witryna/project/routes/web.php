@@ -21,8 +21,14 @@ Route::get('/', function () {
 
 Route::resource('comments',CommentController::class);
 Route::resource('courses' ,CourseController::class);
+Route::resource('/comments', App\Http\Controllers\CommentController::class);
+Route::resource('/users', App\Http\Controllers\UsersController::class);
+Route::post('/users/{id}/update',[App\Http\Controllers\UsersController::class,'update'])->middleware('auth');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
+
 
 require __DIR__.'/auth.php';
