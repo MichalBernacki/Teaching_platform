@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
@@ -68,8 +69,8 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $user = \DB::table('users')->where('id',$id)->first();
-        $courses = Course::where('lecturer_id',$user->id)->get();
+        $user = User::where('id', $id)->firstOrFail();
+        $courses = $user->courses;
         return view('courses.show',['courses'=>$courses,'user'=>$user]);
     }
 
