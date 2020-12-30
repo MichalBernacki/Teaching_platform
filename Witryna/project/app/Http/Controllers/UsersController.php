@@ -10,6 +10,7 @@ class UsersController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:dean');
     }
 
     /**
@@ -19,8 +20,6 @@ class UsersController extends Controller
      */
     public function index()
     {
-        Gate::authorize('dean');
-
         $users=User::all();
         return view('deansoffice.users')->withUsers($users);
     }
@@ -65,7 +64,6 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        Gate::authorize('dean');
         //
         return view('deansoffice.changerole')->withUser($user);
     }
@@ -79,8 +77,6 @@ class UsersController extends Controller
      */
     public function update(Request $request, int $id)
     {
-        Gate::authorize('dean');
-
         User::where('id',$id)->update(['role_id'=>request('opt')]);
         return redirect('/users');
     }
