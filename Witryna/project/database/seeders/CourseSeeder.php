@@ -19,5 +19,12 @@ class CourseSeeder extends Seeder
             'lecturer_id' => 2,
             'description' => 'Teoria Sygnalow'
         ]);
+
+        DB::table('courses')->insert([
+            'id' => 2,
+            'name' => 'Course',
+            'lecturer_id' => 5,
+            'description' => 'Course course'
+        ]);
     }
 }
