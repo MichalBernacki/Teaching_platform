@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\User;
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,6 +19,8 @@ class UsersController extends Controller
      */
     public function index()
     {
+        Gate::authorize('dean');
+
         $users=User::all();
         return view('deansoffice.users')->withUsers($users);
     }
@@ -57,6 +65,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize('dean');
         //
         return view('deansoffice.changerole')->withUser($user);
     }
@@ -64,12 +73,14 @@ class UsersController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, int $id)
     {
+        Gate::authorize('dean');
+
         User::where('id',$id)->update(['role_id'=>request('opt')]);
         return redirect('/users');
     }
