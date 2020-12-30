@@ -16,9 +16,10 @@
                     </td>
 
                 </li>
-                <a href="/courses/create">Create new course</a>
+
 
             @endforeach
+            <a href="/courses/create">Create new course</a>
         </div>
     </div>
 </x-guest-layout>

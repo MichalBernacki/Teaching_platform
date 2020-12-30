@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
-use App\Models\LessonUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
@@ -119,8 +119,8 @@ class CourseController extends Controller
 
     public function generateMark($id)
     {
-        $lessonUser = LessonUser::find($id);
-        return view('courses.generateMark');
+        $users = User::all();
+        return view('courses.generateMark')->withUsers($users);
         //return redirect()->route('courses.generateMark', ['lessonUser' => $lessonUser]);
     }
 }
