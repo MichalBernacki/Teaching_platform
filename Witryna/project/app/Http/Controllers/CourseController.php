@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\LessonUser;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
@@ -15,6 +16,7 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+
     }
     public function index()
     {
@@ -113,5 +115,13 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    public function generateMark($id)
+    {
+        $lessonUser = LessonUser::find($id);
+        return view('courses.generateMark');
+        //return redirect()->route('courses.generateMark', ['lessonUser' => $lessonUser]);
     }
 }
