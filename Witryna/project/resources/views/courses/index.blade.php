@@ -6,18 +6,21 @@
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <a href="{{route('courses.show',Auth::id())}}">My courses</a>
+            <table>
             @foreach ($courses as $course)
-                <li>
+                <tr>
                     <td>
-                        {{$course->name}}
+                        <a href="{{route('courses.course',$course->id)}}"> <strong>{{$course->name}}</strong></a>
                     </td>
                     <td>
                         {{$course->description}}
                     </td>
-                </li>
-                <a href="/courses/create">Create new course</a>
-
+                </tr>
             @endforeach
+            </table>
+            @can('lecturer')
+                <a href="/courses/create">Create new course</a>
+            @endcan
         </div>
     </div>
 </x-guest-layout>

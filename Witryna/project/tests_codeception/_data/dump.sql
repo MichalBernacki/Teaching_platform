@@ -52,7 +52,6 @@ CREATE TABLE `course_user` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
   `course_id` bigint unsigned NOT NULL DEFAULT '1',
-  `confirmed` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -231,7 +230,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +239,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (11,'2013_12_29_150139_create_roles_table',1),(12,'2014_10_12_000000_create_users_table',1),(13,'2014_10_12_100000_create_password_resets_table',1),(14,'2019_08_19_000000_create_failed_jobs_table',1),(15,'2020_12_15_145710_create_comments_table',1),(16,'2020_12_29_162045_create_courses_table',1),(17,'2020_12_29_163258_create_course_user_table',1),(18,'2020_12_29_164100_create_lessons_table',1),(19,'2020_12_29_165136_create_lesson_times_table',1),(20,'2020_12_29_165639_create_lesson_users_table',1);
+INSERT INTO `migrations` VALUES (1,'2013_12_29_150139_create_roles_table',1),(2,'2014_10_12_000000_create_users_table',1),(3,'2014_10_12_100000_create_password_resets_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2020_12_15_145710_create_comments_table',1),(6,'2020_12_29_162045_create_courses_table',1),(7,'2020_12_29_163258_create_course_user_table',1),(8,'2020_12_29_164100_create_lessons_table',1),(9,'2020_12_29_165136_create_lesson_times_table',1),(10,'2020_12_29_165639_create_lesson_users_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +323,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$kLaaCSwAyCP/0YufCrUNEOWlXGuL77VX/6NymccnYN67XyFNxuf0e',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$EvGy9Ri/lLIvUCJpkIQ43uLldC87.YgchJqL2FAXcVvrkYRpo3y0.',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$bnY2xug/1WuHGsd/wdSqiukcUj15CTWwpPWbSF7nEpCkxUbFTI8U2',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$VT8KsV9naqaZGtvH12EA3ey77.GzCz0W0Qy4yJQu2XYNsm7rl2zH6',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$ABfKgZCB2tgTmauhmFQWSeMp.nr8ILQoGaC8mGWaxnb9L0C9.bTtK',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$5bqqhOGuuHnvD9vPwliYn.XoKbKlD9OMPqkl2m64ZXdRr1WSxu.W6',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$LgQmBW2W9pANggWqFrhIVOiI.iRG2A9NauFsI/9ncuKsch.OAf7tO',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$Br/vy/eNUoSTWdQDE1pGuOedvNcBhTIhp6OOsHUqZrTtCakYZPxKC',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$4mZfdzJISZJbhnST49YQZufaFyMuUKocMz..1.8YArc/haNhrDS4O',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$N68G3UVOvP3tG9O4Xf0Q9uyoMhCEQfuBPTlOJdJkWbIQriIPNuVw6',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -337,4 +336,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-30 16:06:49
+-- Dump completed on 2020-12-30 10:22:01

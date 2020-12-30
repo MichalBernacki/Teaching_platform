@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Lesson;
 use App\Models\Course;
 use App\Models\CourseUser;
 use App\Models\User;
@@ -127,5 +127,11 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function course($id)
+    {
+        $course = Course::find($id);
+        $lessons = Lesson::where('course_id',$id)->get();
+        return view('courses.course',['course'=>$course,'lessons'=>$lessons]);
     }
 }

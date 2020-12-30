@@ -50,5 +50,13 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             return false;
         });
+        //for lecturer & dean's office employee
+        Gate::define('lecturerOrDean', function ($user) {
+            $lecturer_id = Role::where('name',"Lecturer")->get()[0]->id;
+            $dean_id = Role::where('name',"Dean's office employee")->get()[0]->id;
+            if($user->role_id == $lecturer_id || $user->role_id==$dean_id)
+                return true;
+            return false;
+        });
     }
 }
