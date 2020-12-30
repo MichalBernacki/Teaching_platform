@@ -3,18 +3,39 @@
         <h1>
             Generate Marks
         </h1>
-        @foreach ( $users as $user )
+        @foreach ( $users as $key => $user )
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                <p>{{DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses')}}</p>
                 <p> {{$user->name}}</p>
-                <p>{{$loop->iteration}}</p>
+                <p>Pluses from every lesson: {{DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses')}}</p>
+                <p>Presence from every lesson: {{$presence[$key]}}</p>
 
+                <form method="GET" action="">
+                    @csrf
+
+                    <div class="field">
+                        <label class="label" for="mark">Type mark</label>
+
+                        <div class="control">
+                            <input class="input {{ $errors->has('mark') ? 'is-danger' : '' }}" type="text" name="mark" id="mark" >
+
+                            @if($errors->has('mark'))
+                                <li class="help is-danger">{{ $errors->first('mark') }}</li>
+                            @endif
+
+                        </div>
+                    </div>
+
+                    <div class="field is-grouped">
+                        <div class="control">
+                            <button class="button is-link" type="submit">Save mark</button>
+                        </div>
+                    </div>
+
+                </form>
             </div>
         @endforeach
 
-        @foreach ( $presence as $p )
-            <p>{{$p}}</p>
-        @endforeach
+
 
     </div>
 </x-guest-layout>
