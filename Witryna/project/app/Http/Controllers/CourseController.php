@@ -15,6 +15,7 @@ class CourseController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:lecturerOrDean');
     }
     public function index()
     {
