@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,9 @@ Route::get('/', function () {
 Route::resource('comments',CommentController::class);
 Route::resource('courses' ,CourseController::class);
 Route::resource('/comments', App\Http\Controllers\CommentController::class);
-Route::resource('/users', App\Http\Controllers\UsersController::class);
+Route::resource('users', UsersController::class)->only([
+    'index', 'edit', 'update'
+]);;
 Route::post('/users/{id}/update',[App\Http\Controllers\UsersController::class,'update'])->middleware('auth');
 
 Route::get('/dashboard', function () {
