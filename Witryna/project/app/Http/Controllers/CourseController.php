@@ -6,6 +6,9 @@ use App\Models\Course;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
+use DB;
+
 class CourseController extends Controller
 {
     /**
@@ -121,6 +124,6 @@ class CourseController extends Controller
     {
         $users = User::all();
         return view('courses.generateMark')->withUsers($users);
-        //return redirect()->route('courses.generateMark', ['lessonUser' => $lessonUser]);
+
     }
 }

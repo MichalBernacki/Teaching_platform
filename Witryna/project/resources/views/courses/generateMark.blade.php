@@ -5,7 +5,7 @@
         </h1>
         @foreach ($users as $user)
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-                <p> {{$user->id}}</p>
+                <p>{{DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses')}}</p>
                 <p> {{$user->name}}</p>
             </div>
         @endforeach
