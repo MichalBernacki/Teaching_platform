@@ -47,14 +47,13 @@ class CourseController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'lecturer_id' => 'required',
             'description' => 'required'
 
         ]);
         $course = new Course();
 
         $course->name = request('name');
-        $course->lecturer_id = request('lecturer_id');
+        $course->lecturer_id = Auth::id();
         $course->description = request('description');
 
         $course->save();

@@ -14,6 +14,7 @@
                     <td>
                         {{$course->description}}
                     </td>
+
                 </li>
                 <a href="/courses/create">Create new course</a>
 
