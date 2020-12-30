@@ -206,7 +206,7 @@ CREATE TABLE `lessons` (
   PRIMARY KEY (`id`),
   KEY `lessons_course_id_foreign` (`course_id`),
   CONSTRAINT `lessons_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,6 +215,7 @@ CREATE TABLE `lessons` (
 
 LOCK TABLES `lessons` WRITE;
 /*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
+INSERT INTO `lessons` VALUES (1,1,'korelacja','xcorr',NULL,NULL);
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,7 +324,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$T14Rwmeg9On2Ae0/RhPh5OephN49LMsUsiTBD.ns72w0kWsZdRlcm',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$LMuoGM5TE9hHB6ps.BlqWOz0aH0XPD0/vs8AM5ss9N96LcmiCIYpS',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$beU/ejPHolWpuQRHKoINh.QWjztpBkshK10J/ElZFgyXdLQToChFO',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$VOKoY9F.Vb1rwpJDWVKe4.4gDWmF85Er983Z1jbufyWLrc4jMnvJO',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$fuexGcKCh0hQrHPU6gl76unsNYTsWDgr/VALoFCQcYAdODNPmb/0G',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$P0oM3.R896ZqXwXJ4eVQjOccAuukOe.NBfu2TlcCYynrGCrFFep3C',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$S02GlQST2tV1EwanjYdYJ.bU.PikRvTSUu9ASrhCYuu5rrWZgp8CG',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$9f2Fo1JhEXNT40kMMAYRl.tbz6SkFbBjrmSgR19SBDwrr.ZDphBSm',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$zkBuDv9tZbRu3dS9UzQ40eg80.DgQ7d.Wum2VPdsZ5gQTCp7R7O9u',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$tvIEhwv2QBoY0EMLQW00xOJiu3OPoD4KgUppicpm0Z9gbbLT3PDf2',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -336,4 +337,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-30 16:35:18
+-- Dump completed on 2020-12-30 18:55:22
