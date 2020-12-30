@@ -14,6 +14,11 @@ class CourseUserSeeder extends Seeder
     public function run()
     {
         DB::table('course_user')->insert([
+            'id' => 1,
+            'course_id' => 2,
+            'user_id' => 4,
+        ]);
+        DB::table('course_user')->insert([
             'user_id' => 1,
             'course_id'=>1,
             'confirmed'=>true

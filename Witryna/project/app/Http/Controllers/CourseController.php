@@ -7,6 +7,8 @@ use App\Models\CourseUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
+
 class CourseController extends Controller
 {
     /**
@@ -68,10 +70,18 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function mine()
     {
-        $user = \DB::table('users')->where('id',$id)->first();
-        $courses = Course::where('lecturer_id',$user->id)->get();
+        $user = Auth::user();
+        if(Gate::allows('student')){
+            $courses = $user->courses;
+        }
+        elseif (Gate::allows('lecturer')){
+            $courses = Course::where('lecturer_id', $user->id)->get();
+        }
+        else{
+            $courses = array();
+        }
         return view('courses.show',['courses'=>$courses,'user'=>$user]);
     }
 

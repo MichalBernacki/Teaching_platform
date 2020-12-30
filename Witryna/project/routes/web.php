@@ -24,6 +24,8 @@ Route::resource('lessons' ,LessonController::class);
 Route::get('lessons/create/{id}',[LessonController::class,'create'])->name('lessons.create');
 Route::get('courses/{id}/course',[CourseController::class,'course'])->name('courses.course');
 Route::resource('comments',CommentController::class);
+
+Route::get('/courses/mine', [CourseController::class, 'mine'])->name('courses.mine');
 Route::resource('courses' ,CourseController::class);
 Route::resource('users', UsersController::class)->only([
     'index', 'edit', 'update'

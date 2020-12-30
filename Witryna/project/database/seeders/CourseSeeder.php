@@ -19,14 +19,21 @@ class CourseSeeder extends Seeder
             'lecturer_id' => 2,
             'description' => 'Teoria Sygnalow'
         ]);
+
         DB::table('courses')->insert([
             'id' => 2,
+            'name' => 'Course',
+            'lecturer_id' => 5,
+            'description' => 'Course course'
+        ]);
+        DB::table('courses')->insert([
+            'id' => 3,
             'name' => 'FIZ',
             'lecturer_id' => 2,
             'description' => 'Fizyka II'
         ]);
         DB::table('courses')->insert([
-            'id' => 3,
+            'id' => 4,
             'name' => 'Programowanie Obiektowe',
             'lecturer_id' => 1,
             'description' => 'PO'

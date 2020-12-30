@@ -22,7 +22,9 @@
                         <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
                     </td>
                     <td>
+                        @can('lecturer')
                         <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
+                        @endcan('lecturer')
                     </td>
                 </tr>
             @endforeach
