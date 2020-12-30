@@ -19,7 +19,7 @@
                         {{$course->description}}
                     </td>
                     <td>
-                        <a href="">List of students</a>
+                        <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
                     </td>
                     <td>
                         <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>

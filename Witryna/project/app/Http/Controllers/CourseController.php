@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Course;
+use App\Models\CourseUser;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class CourseController extends Controller
@@ -102,6 +104,18 @@ class CourseController extends Controller
         $course->description = request('description');
         $course->update();
         return redirect()->route('courses.index');
+    }
+
+    public function listparticipants($id)
+    {
+        $course=Course::find($id);
+        $courseusers=\DB::table('course_user')->where('course_id',$id)->get();
+        return view('courses.listparticipants',['course'=>$course,'courseusers'=>$courseusers]);
+    }
+    public function confirm($courseid,$id)
+    {
+         CourseUser::where(['course_id'=>$courseid,'user_id'=>$id])->update(['confirmed'=>1]);
+        return redirect()->route('courses.listparticipants',['id'=>$courseid]);
     }
 
     /**
