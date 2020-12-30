@@ -21,6 +21,8 @@ Route::get('/', function () {
 });
 
 Route::resource('comments',CommentController::class);
+
+Route::get('/courses/mine', [CourseController::class, 'mine'])->name('courses.mine');
 Route::resource('courses' ,CourseController::class);
 Route::resource('/comments', App\Http\Controllers\CommentController::class);
 Route::resource('users', UsersController::class)->only([
