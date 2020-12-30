@@ -32,7 +32,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        //
+        return view('/courses/create');
     }
 
     /**
@@ -43,7 +43,21 @@ class CourseController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'name' => 'required',
+            'lecturer_id' => 'required',
+            'description' => 'required'
+
+        ]);
+        $course = new Course();
+
+        $course->name = request('name');
+        $course->lecturer_id = request('lecturer_id');
+        $course->description = request('description');
+
+        $course->save();
+
+        return redirect()->route('courses.index', ['course' => $course]);
     }
 
     /**
