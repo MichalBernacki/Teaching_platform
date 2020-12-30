@@ -123,7 +123,15 @@ class CourseController extends Controller
     public function generateMark($id)
     {
         $users = User::all();
-        return view('courses.generateMark')->withUsers($users);
+        $presence = [];
+
+        foreach($users as $user){
+
+            $value = \DB::table('lesson_users')->where('user_id',$user->id)->pluck('presence');
+            array_push($presence , $value);
+        }
+
+        return view('courses.generateMark')->withUsers($users)->withPresence($presence);
 
     }
 }
