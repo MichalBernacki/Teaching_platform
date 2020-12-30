@@ -19,10 +19,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('courses/{id}/course',[CourseController::class,'course'])->name('courses.course');
 Route::resource('comments',CommentController::class);
 Route::resource('courses' ,CourseController::class);
-Route::resource('/comments', App\Http\Controllers\CommentController::class);
 Route::resource('users', UsersController::class)->only([
     'index', 'edit', 'update'
 ]);;

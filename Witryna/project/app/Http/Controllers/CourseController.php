@@ -114,4 +114,10 @@ class CourseController extends Controller
     {
         //
     }
+    public function course($id)
+    {
+        $this->middleware('can:lecturer');
+        $course = Course::find($id);
+        return view('courses.course')->withCourse($course);
+    }
 }
