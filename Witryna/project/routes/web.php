@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\LessonController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('lessons' ,LessonController::class);
+Route::get('lessons/create/{id}',[LessonController::class,'create'])->name('lessons.create');
 Route::get('courses/{id}/course',[CourseController::class,'course'])->name('courses.course');
 Route::resource('comments',CommentController::class);
 Route::resource('courses' ,CourseController::class);

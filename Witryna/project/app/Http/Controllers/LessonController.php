@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 use App\Models\Lesson;
-use App\Models\Course;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-class CourseController extends Controller
+
+class LessonController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,9 +17,9 @@ class CourseController extends Controller
     }
     public function index()
     {
-        $courses = Course::all();
+        $lessons = Lesson::all();
         if(Auth::check()) {
-            return view('courses.index')->withCourses($courses);
+            return view('lessons.index')->withLessons($lessons);
         }
         return view('auth.login');
     }
@@ -30,9 +29,9 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($id)
     {
-        return view('/courses/create');
+        return view('/lessons/create',['id'=>$id]);
     }
 
     /**
@@ -44,20 +43,17 @@ class CourseController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name' => 'required',
-            'lecturer_id' => 'required',
+            'title' => 'required',
+            'course_id' => 'required',
             'description' => 'required'
 
         ]);
-        $course = new Course();
-
-        $course->name = request('name');
-        $course->lecturer_id = request('lecturer_id');
-        $course->description = request('description');
-
-        $course->save();
-
-        return redirect()->route('courses.index', ['course' => $course]);
+        $lesson = new Lesson();
+        $lesson->course_id=request('course_id');
+        $lesson->title = request('title');
+        $lesson->description = request('description');
+        $lesson->save();
+        return redirect()->route('courses.course', ['id' => request('course_id')]);;
     }
 
     /**
@@ -68,9 +64,7 @@ class CourseController extends Controller
      */
     public function show($id)
     {
-        $user = \DB::table('users')->where('id',$id)->first();
-        $courses = Course::where('lecturer_id',$user->id)->get();
-        return view('courses.show',['courses'=>$courses,'user'=>$user]);
+        //
     }
 
     /**
@@ -81,8 +75,7 @@ class CourseController extends Controller
      */
     public function edit($id)
     {
-        $course = Course::find($id);
-        return view('courses.edit')->withCourse($course);
+        //
     }
 
     /**
@@ -92,16 +85,9 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Course $course)
+    public function update(Request $request, $id)
     {
-        request()->validate([
-            'name' => ['required'],
-            'description' => ['required']
-        ]);
-        $course->name = request('name');
-        $course->description = request('description');
-        $course->update();
-        return redirect()->route('courses.index');
+        //
     }
 
     /**
@@ -113,11 +99,5 @@ class CourseController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function course($id)
-    {
-        $course = Course::find($id);
-        $lessons = Lesson::where('course_id',$id)->get();
-        return view('courses.course',['course'=>$course,'lessons'=>$lessons]);
     }
 }
