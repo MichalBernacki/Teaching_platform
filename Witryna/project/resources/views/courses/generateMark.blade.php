@@ -6,7 +6,7 @@
         @foreach ( $users as $key => $user )
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <p> {{$user->name}}</p>
-                <p>Pluses from every lesson: {{DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses')}}</p>
+                <p>Pluses from every lesson: {{$pluses[$key]}}</p>
                 <p>Presence from every lesson: {{$presence[$key]}}</p>
 
                 <form method="GET" action="">

@@ -123,15 +123,23 @@ class CourseController extends Controller
     public function generateMark($id)
     {
         $users = User::all();
+        $pluses = [];
         $presence = [];
+        $toRemove = array('[',']');
 
         foreach($users as $user){
 
-            $value = \DB::table('lesson_users')->where('user_id',$user->id)->pluck('presence');
-            array_push($presence , $value);
+            $getPluses= \DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses');
+            $getPresence = \DB::table('lesson_users')->where('user_id',$user->id)->pluck('presence');
+
+            $newPluses = str_replace($toRemove, "", $getPluses);
+            $newPresence = str_replace($toRemove, "", $getPresence);
+
+            array_push($presence , $newPluses);
+            array_push($pluses , $newPresence);
         }
 
-        return view('courses.generateMark')->withUsers($users)->withPresence($presence);
+        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses);
 
     }
 }
