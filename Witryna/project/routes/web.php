@@ -30,6 +30,7 @@ Route::post('/users/{id}/update',[App\Http\Controllers\UsersController::class,'u
 
 Route::get('/courses/{id}/generateMark',[CourseController::class,'generateMark'])->name('courses.generateMark');
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');

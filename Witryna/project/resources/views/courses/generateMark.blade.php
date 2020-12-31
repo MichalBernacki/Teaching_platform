@@ -10,6 +10,7 @@
                 <p>Presence from every lesson: {{$presence[$key]}}</p>
                 <p>Average pluses per lesson: {{$averagepluses[$key]}}</p>
                 <p>Presence: {{$percentagepresence[$key]}}%</p>
+
                 <form method="GET" action="">
                     @csrf
 

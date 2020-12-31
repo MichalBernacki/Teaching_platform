@@ -120,6 +120,8 @@ class CourseController extends Controller
     }
 
 
+
+
     public function generateMark($id)
     {
         $users = User::all();
@@ -127,7 +129,6 @@ class CourseController extends Controller
         $presence = [];
         $averagepluses = [];
         $percentagepresence = [];
-
         $toRemove = array('[',']');
 
         foreach($users as $user){
@@ -146,12 +147,36 @@ class CourseController extends Controller
 
             $parts = explode(',',$newPluses);
             array_push($percentagepresence , ( array_sum($parts)/count($parts) )*100 );
-
-
         }
 
         return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses)->
         withAveragepluses($averagepluses)->withPercentagepresence($percentagepresence);
 
     }
+
+
+   /* public function saveMark()
+    {
+        return view('courses.generateMark');
+    }
+   */
+
+
 }
+
+/*
+public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
+{
+    $toRemove = array('[',']');
+
+    $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
+
+    $newValue = str_replace($toRemove, "", $getValue);
+
+    array_push($classActivity , $newValue);
+
+    $parts = explode(',',$newValue);
+    array_push($averageValue , array_sum($parts)/count($parts));
+
+}
+*/
