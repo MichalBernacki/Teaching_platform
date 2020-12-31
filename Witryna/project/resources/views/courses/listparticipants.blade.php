@@ -7,14 +7,14 @@
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <h1>List of participants:</h1> <br>
             <ul>
-               @foreach($courseusers as $usr)
+               @foreach($course->users as $usr)
                     <li>
-                        <td>{{$usr->user_id}}</td>
-                        <td>{{DB::table('users')->where('id',$usr->user_id)->pluck('name')->first()}}</td>
-                        <td>{{DB::table('users')->where('id',$usr->user_id)->pluck('email')->first()}}</td>
-                        <td><strong>{{$usr->confirmed?'confirmed':'unconfirmed'}}</strong></td>
-                        @if(!$usr->confirmed)
-                            <a href="confirm/{{$usr->user_id}}">Confirm</a>
+                        <td>{{$usr->id}}</td>
+                        <td>{{$usr->name}}</td>
+                        <td>{{$usr->email}}</td>
+                        <td><strong>{{$usr->pivot->confirmed?'confirmed':'unconfirmed'}}</strong></td>
+                        @if(!$usr->pivot->confirmed)
+                            <a href="confirm/{{$usr->id}}">Confirm</a>
                         @endif
                     </li>
                 @endforeach

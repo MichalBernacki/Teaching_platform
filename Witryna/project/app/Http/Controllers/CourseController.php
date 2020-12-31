@@ -119,12 +119,11 @@ class CourseController extends Controller
     public function listparticipants($id)
     {
         $course=Course::find($id);
-        $courseusers=\DB::table('course_user')->where('course_id',$id)->get();
-        return view('courses.listparticipants',['course'=>$course,'courseusers'=>$courseusers]);
+        return view('courses.listparticipants')->withCourse($course);
     }
     public function confirm($courseid,$id)
     {
-         CourseUser::where(['course_id'=>$courseid,'user_id'=>$id])->update(['confirmed'=>1]);
+        CourseUser::where(['course_id'=>$courseid,'user_id'=>$id])->update(['confirmed'=>1]);
         return redirect()->route('courses.listparticipants',['id'=>$courseid]);
     }
 
