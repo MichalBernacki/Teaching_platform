@@ -125,6 +125,9 @@ class CourseController extends Controller
         $users = User::all();
         $pluses = [];
         $presence = [];
+        $averagepluses = [];
+        $percentagepresence = [];
+
         $toRemove = array('[',']');
 
         foreach($users as $user){
@@ -137,9 +140,18 @@ class CourseController extends Controller
 
             array_push($presence , $newPluses);
             array_push($pluses , $newPresence);
+
+            $parts = explode(',',$newPluses);
+            array_push($averagepluses , array_sum($parts)/count($parts));
+
+            $parts = explode(',',$newPluses);
+            array_push($percentagepresence , ( array_sum($parts)/count($parts) )*100 );
+
+
         }
 
-        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses);
+        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses)->
+        withAveragepluses($averagepluses)->withPercentagepresence($percentagepresence);
 
     }
 }
