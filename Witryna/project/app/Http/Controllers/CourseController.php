@@ -9,6 +9,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
+
+use DB;
+
 class CourseController extends Controller
 {
     /**
@@ -49,14 +52,13 @@ class CourseController extends Controller
     {
         request()->validate([
             'name' => 'required',
-            'lecturer_id' => 'required',
             'description' => 'required'
 
         ]);
         $course = new Course();
 
         $course->name = request('name');
-        $course->lecturer_id = request('lecturer_id');
+        $course->lecturer_id = Auth::id();
         $course->description = request('description');
 
         $course->save();
@@ -138,10 +140,71 @@ class CourseController extends Controller
     {
         //
     }
+
     public function course($id)
     {
         $course = Course::find($id);
         $lessons = Lesson::where('course_id',$id)->get();
         return view('courses.course',['course'=>$course,'lessons'=>$lessons]);
     }
+
+
+    public function generateMark($id)
+    {
+        $users = User::all();
+        $pluses = [];
+        $presence = [];
+        $averagepluses = [];
+        $percentagepresence = [];
+        $toRemove = array('[',']');
+
+        foreach($users as $user){
+
+            $getPluses= \DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses');
+            $getPresence = \DB::table('lesson_users')->where('user_id',$user->id)->pluck('presence');
+
+            $newPluses = str_replace($toRemove, "", $getPluses);
+            $newPresence = str_replace($toRemove, "", $getPresence);
+
+            array_push($presence , $newPluses);
+            array_push($pluses , $newPresence);
+
+            $parts = explode(',',$newPluses);
+            array_push($averagepluses , array_sum($parts)/count($parts));
+
+            $parts = explode(',',$newPluses);
+            array_push($percentagepresence , ( array_sum($parts)/count($parts) )*100 );
+        }
+
+        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses)->
+        withAveragepluses($averagepluses)->withPercentagepresence($percentagepresence);
+
+    }
+
+
+   /* public function saveMark()
+    {
+        return view('courses.generateMark');
+    }
+   */
+
+
+
 }
+
+/*
+public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
+{
+    $toRemove = array('[',']');
+
+    $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
+
+    $newValue = str_replace($toRemove, "", $getValue);
+
+    array_push($classActivity , $newValue);
+
+    $parts = explode(',',$newValue);
+    array_push($averageValue , array_sum($parts)/count($parts));
+
+}
+*/

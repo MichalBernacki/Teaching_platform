@@ -26,6 +26,9 @@
                         <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
                         @endcan('lecturer')
                     </td>
+                    <td>
+                        <a href="{{route('courses.generateMark',$course->id)}}"><strong>Generate marks</strong></a>
+                    </td>
                 </tr>
             @endforeach
             </table>

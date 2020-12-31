@@ -23,18 +23,6 @@
                 </div>
 
                 <div class="field">
-                    <label class="label" for="lecturer_id">Type your id</label>
-
-                    <div class="control">
-                        <input class="input {{ $errors->has('lecturer_id') ? 'is-danger' : '' }}" type="text" name="lecturer_id" id="lecturer_id" value="{{ old('lecturer_id') }}">
-
-                        @if($errors->has('lecturer_id'))
-                            <li class="help is-danger">{{ $errors->first('lecturer_id') }}</li>
-                        @endif
-                    </div>
-                </div>
-
-                <div class="field">
                     <label class="label" for="description">Describe your  course</label>
 
                     <div class="control">
