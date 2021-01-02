@@ -7,7 +7,7 @@
                 <ul>
                     <li>Name: {{ $user->name }}</li>
                     <li>Email: {{ $user->email }}</li>
-                    <li>Current Role:{{DB::table('roles')->where('id',$user->role_id)->pluck('name')->first()}}</li>
+                    <li>Current Role:{{$role->name}}</li>
                     <li>New Role:
                         <form method="POST" action="update">
                             @csrf

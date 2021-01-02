@@ -66,8 +66,8 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
-        //
-        return view('deansoffice.changerole')->withUser($user);
+        $role=Role::find($user->role_id);
+        return view('deansoffice.changerole')->withUser($user)->withRole($role);
     }
 
     /**
