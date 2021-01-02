@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -21,7 +22,8 @@ class UsersController extends Controller
     public function index()
     {
         $users=User::all();
-        return view('deansoffice.users')->withUsers($users);
+        $roles=Role::all();
+        return view('deansoffice.users')->withUsers($users)->withRoles($roles);
     }
 
     /**

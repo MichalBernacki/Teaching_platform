@@ -12,7 +12,7 @@
                        <tr>
                             <th>Name: {{ $user->name }}</th>
                             <th>Email: {{ $user->email }}</th>
-                            <th>Role:{{DB::table('roles')->where('id',$user->role_id)->pluck('name')->first()}}</th>
+                            <th>Role:{{$roles[$user->role_id-1]->name}}</th>
                             <th><a href="/users/{{$user->id}}/edit">Change Role</a></th>
                         </tr>
                @endif
@@ -29,7 +29,7 @@
                         <tr>
                             <th>Name: {{ $user->name }}</th>
                             <th>Email: {{ $user->email }}</th>
-                            <th>Role:{{DB::table('roles')->where('id',$user->role_id)->pluck('name')->first()}}</th>
+                            <th>Role:{{$roles[$user->role_id-1]->name}}</th>
                             <th><a href="/users/{{$user->id}}/edit">Change Role</a></th>
                         </tr>
                     @endif
