@@ -52,6 +52,7 @@ CREATE TABLE `course_user` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user_id` bigint unsigned NOT NULL,
   `course_id` bigint unsigned NOT NULL DEFAULT '1',
+  `confirmed` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -59,7 +60,7 @@ CREATE TABLE `course_user` (
   KEY `course_user_course_id_foreign` (`course_id`),
   CONSTRAINT `course_user_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
   CONSTRAINT `course_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,7 +69,7 @@ CREATE TABLE `course_user` (
 
 LOCK TABLES `course_user` WRITE;
 /*!40000 ALTER TABLE `course_user` DISABLE KEYS */;
-INSERT INTO `course_user` VALUES (1,4,2,NULL,NULL);
+INSERT INTO `course_user` VALUES (1,4,2,1,NULL,NULL),(2,1,1,1,NULL,NULL),(3,2,1,0,NULL,NULL),(4,2,2,0,NULL,NULL);
 /*!40000 ALTER TABLE `course_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +88,7 @@ CREATE TABLE `courses` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -96,7 +97,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'TS','2','Teoria Sygnalow',NULL,NULL),(2,'Course','5','Course course',NULL,NULL);
+INSERT INTO `courses` VALUES (1,'TS','2','Teoria Sygnalow',NULL,NULL),(2,'Course','5','Course course',NULL,NULL),(3,'FIZ','2','Fizyka II',NULL,NULL),(4,'Programowanie Obiektowe','1','PO',NULL,NULL);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +208,7 @@ CREATE TABLE `lessons` (
   PRIMARY KEY (`id`),
   KEY `lessons_course_id_foreign` (`course_id`),
   CONSTRAINT `lessons_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,6 +217,7 @@ CREATE TABLE `lessons` (
 
 LOCK TABLES `lessons` WRITE;
 /*!40000 ALTER TABLE `lessons` DISABLE KEYS */;
+INSERT INTO `lessons` VALUES (1,1,'korelacja','xcorr',NULL,NULL);
 /*!40000 ALTER TABLE `lessons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -324,7 +326,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$aXsN/9xRRQ2nrAz9mjn11utUHcl1AeOj5MGwJl2qF44FUCbAVyPei',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$QGm.uEeglYhgsIj2xhNYqu7nCKq7DAHEzBMVNLCak1L.Zrs5.0B.6',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$Mo2ogYkPhl566K3br8gSduSz.STMKq.QFE6xmfAr9vaSWuyf83N26',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$S2QrgllB10jw5EEcHjvBX.fIFy5.6ZSMpUUziGXDcUddgUyk3Lsty',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$2oqycabxfVWYEDmtK6zE9Ogq8qIiU2TRV/FZnevqjcdjA48Phk/wW',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$dEZijls37jmTmfKRhNrp8uyeFmYliMlv81kODSJ2ToZCx84aD6G5e',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$48WS/bLThSL9QkfkPhQWKO2VArqPOOuQ6.xEGttYORVZk04ReB2m6',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$waMom7XZnGY5DeoBa1k6supIEtiPzzvcW.hcnPbiid5ibNiTzPSH6',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$9qs/kI1OQquQFp3SyN/aTedPd6ciTIPz1W2YIFMOLw39F7Po5bbAS',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$qn7B.HLUeRWcjmD181Lc/.8TwWv1WVvd7J.cSu0Apoe0rROd5SNfe',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -337,4 +339,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-30 19:14:14
+-- Dump completed on 2021-01-04 21:33:45

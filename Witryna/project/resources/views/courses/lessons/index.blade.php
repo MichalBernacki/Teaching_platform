@@ -9,7 +9,7 @@
             <p>Description: {{$course->description}}</p>
             <strong>List of lessons:</strong>
             <table>
-            @foreach ($lessons as $lesson)
+                @foreach ($lessons as $lesson)
                     <tr>
                         <td>
                             {{$lesson->title}}
@@ -18,13 +18,13 @@
                             {{$lesson->description}}
                         </td>
                         <td>
-                            <a href="{{route('lessons.show',$lesson->id)}}">Join</a>
+                            <a href="{{route('courses.lessons.show',[$course,$lesson])}}">Join</a>
                         </td>
                     </tr>
-            @endforeach
+                @endforeach
             </table>
             @can('lecturer')
-                <a href="{{route('lessons.create',$course->id)}}">Create new lesson</a>
+                <a href="{{route('courses.lessons.create',$course)}}">Create new lesson</a>
             @endcan
         </div>
     </div>

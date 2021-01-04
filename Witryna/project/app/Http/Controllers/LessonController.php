@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use App\Models\Lesson;
+use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class LessonController extends Controller
@@ -15,11 +17,11 @@ class LessonController extends Controller
     {
         $this->middleware('auth');
     }
-    public function index()
+    public function index(Course $course)
     {
-        $lessons = Lesson::all();
+        $lessons = Lesson::where('course_id',$course->id)->get();
         if(Auth::check()) {
-            return view('lessons.index')->withLessons($lessons);
+            return view('courses.lessons.index')->withLessons($lessons)->withCourse($course);
         }
         return view('auth.login');
     }
@@ -29,9 +31,9 @@ class LessonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create(Course $course)
     {
-        return view('/lessons/create',['id'=>$id]);
+        return view('courses.lessons.create')->withCourse($course);
     }
 
     /**
@@ -40,20 +42,18 @@ class LessonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Course $course)
     {
         request()->validate([
             'title' => 'required',
-            'course_id' => 'required',
             'description' => 'required'
-
         ]);
         $lesson = new Lesson();
-        $lesson->course_id=request('course_id');
+        $lesson->course_id=$course->id;
         $lesson->title = request('title');
         $lesson->description = request('description');
         $lesson->save();
-        return redirect()->route('courses.course', ['id' => request('course_id')]);;
+        return redirect()->route('courses.lessons.index',$course);
     }
 
     /**
@@ -62,9 +62,9 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Course $course,Lesson $lesson)
     {
-        //
+        return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
     }
 
     /**

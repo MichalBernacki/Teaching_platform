@@ -6,10 +6,11 @@
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <a href="{{route('courses.mine')}}">My courses</a>
+            <table>
             @foreach ($courses as $course)
                 <tr>
                     <td>
-                        <a href="{{route('courses.course',$course->id)}}"> <strong>{{$course->name}}</strong></a>
+                        <a href="{{route('courses.lessons.index',$course)}}"> <strong>{{$course->name}}</strong></a>
                     </td>
                     <td>
                         {{$course->description}}

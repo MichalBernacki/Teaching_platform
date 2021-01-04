@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('lessons' ,LessonController::class);
-Route::get('lessons/create/{id}',[LessonController::class,'create'])->name('lessons.create');
-Route::get('courses/{id}/course',[CourseController::class,'course'])->name('courses.course');
+Route::resource('courses.lessons' ,LessonController::class);
 Route::resource('comments',CommentController::class);
 
 Route::get('/courses/mine', [CourseController::class, 'mine'])->name('courses.mine');
