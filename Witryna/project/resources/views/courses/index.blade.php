@@ -45,6 +45,9 @@
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Details</span>
                             </th>
+                            <th scope="col" class="relative px-6 py-3">
+                                <span class="sr-only">Join course</span>
+                            </th>
                         </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200">
@@ -59,6 +62,11 @@
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{route('courses.lessons.index', $course)}}"
                                        class="text-indigo-600 hover:text-indigo-900">Details</a>
+                                </td>
+
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{{route('courses.join', $course)}}"
+                                       class="text-indigo-600 hover:text-indigo-900">Join to course</a>
                                 </td>
                             </tr>
                         @endforeach
