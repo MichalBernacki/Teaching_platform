@@ -20,5 +20,11 @@ class LessonSeeder extends Seeder
             'course_id' => 1,
             'description' => 'xcorr'
         ]);
+        DB::table('lessons')->insert([
+            'id' => 2,
+            'title' => 'splot',
+            'course_id' => 1,
+            'description' => 'conv'
+        ]);
     }
 }

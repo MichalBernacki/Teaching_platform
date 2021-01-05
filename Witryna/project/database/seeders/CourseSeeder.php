@@ -35,7 +35,7 @@ class CourseSeeder extends Seeder
         DB::table('courses')->insert([
             'id' => 4,
             'name' => 'Programowanie Obiektowe',
-            'lecturer_id' => 1,
+            'lecturer_id' => 5,
             'description' => 'PO'
         ]);
     }

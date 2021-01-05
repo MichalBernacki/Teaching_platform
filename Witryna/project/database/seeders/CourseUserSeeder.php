@@ -23,15 +23,5 @@ class CourseUserSeeder extends Seeder
             'course_id'=>1,
             'confirmed'=>true
         ]);
-        DB::table('course_user')->insert([
-            'user_id' => 2,
-            'course_id'=>1,
-            'confirmed'=>false
-        ]);
-        DB::table('course_user')->insert([
-            'user_id' => 2,
-            'course_id'=>2,
-            'confirmed'=>false
-        ]);
     }
 }
