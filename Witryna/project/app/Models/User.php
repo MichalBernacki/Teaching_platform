@@ -15,6 +15,10 @@ class User extends Authenticatable
         return $this->belongsToMany(Course::class);
     }
 
+    public function lecturerCourses(){
+        return $this->hasMany(Course::class, 'lecturer_id');
+    }
+
     public function lessonTimes(){
         return $this->belongsToMany(LessonTime::class)->withPivot('presence', 'pluses');
     }

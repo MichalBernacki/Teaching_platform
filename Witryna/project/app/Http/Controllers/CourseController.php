@@ -79,7 +79,7 @@ class CourseController extends Controller
             $courses = $user->courses;
         }
         elseif (Gate::allows('lecturer')){
-            $courses = Course::where('lecturer_id', $user->id)->get();
+            $courses = $user->lecturerCourses;
         }
         else{
             $courses = array();
