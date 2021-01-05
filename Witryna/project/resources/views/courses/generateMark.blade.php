@@ -1,4 +1,10 @@
-<x-guest-layout>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Courses') }}
+        </h2>
+    </x-slot>
+
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <h1>
             Generate Marks
@@ -18,7 +24,8 @@
                         <label class="label" for="mark">Type mark</label>
 
                         <div class="control">
-                            <input class="input {{ $errors->has('mark') ? 'is-danger' : '' }}" type="text" name="mark" id="mark" >
+                            <input class="input {{ $errors->has('mark') ? 'is-danger' : '' }}" type="text" name="mark"
+                                   id="mark">
 
                             @if($errors->has('mark'))
                                 <li class="help is-danger">{{ $errors->first('mark') }}</li>
@@ -38,6 +45,7 @@
         @endforeach
 
 
-
     </div>
-</x-guest-layout>
+
+
+</x-app-layout>
