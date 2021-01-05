@@ -21,7 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('courses.lessons' ,LessonController::class);
-Route::resource('comments',CommentController::class);
 
 Route::get('/courses/mine', [CourseController::class, 'mine'])->name('courses.mine');
 Route::get('/courses/{course}/generateMark',[CourseController::class,'generateMark'])->name('courses.generateMark');

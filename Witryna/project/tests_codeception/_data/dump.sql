@@ -16,32 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `comments`
---
-
-DROP TABLE IF EXISTS `comments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `comments` (
-  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `text` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comments`
---
-
-LOCK TABLES `comments` WRITE;
-/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `course_user`
 --
 
@@ -83,11 +57,13 @@ DROP TABLE IF EXISTS `courses`;
 CREATE TABLE `courses` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `lecturer_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `lecturer_id` bigint unsigned NOT NULL,
   `description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  KEY `courses_lecturer_id_foreign` (`lecturer_id`),
+  CONSTRAINT `courses_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -97,7 +73,7 @@ CREATE TABLE `courses` (
 
 LOCK TABLES `courses` WRITE;
 /*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'TS','2','Teoria Sygnalow',NULL,NULL),(2,'Course','5','Course course',NULL,NULL),(3,'FIZ','2','Fizyka II',NULL,NULL),(4,'Programowanie Obiektowe','5','PO',NULL,NULL);
+INSERT INTO `courses` VALUES (1,'TS',2,'Teoria Sygnalow',NULL,NULL),(2,'Course',5,'Course course',NULL,NULL),(3,'FIZ',2,'Fizyka II',NULL,NULL),(4,'Programowanie Obiektowe',5,'PO',NULL,NULL);
 /*!40000 ALTER TABLE `courses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -235,7 +211,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -244,7 +220,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2013_12_29_150139_create_roles_table',1),(2,'2014_10_12_000000_create_users_table',1),(3,'2014_10_12_100000_create_password_resets_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2020_12_15_145710_create_comments_table',1),(6,'2020_12_29_162045_create_courses_table',1),(7,'2020_12_29_163258_create_course_user_table',1),(8,'2020_12_29_164100_create_lessons_table',1),(9,'2020_12_29_165136_create_lesson_times_table',1),(10,'2020_12_29_165639_create_lesson_time_user_table',1);
+INSERT INTO `migrations` VALUES (1,'2013_12_29_150139_create_roles_table',1),(2,'2014_10_12_000000_create_users_table',1),(3,'2014_10_12_100000_create_password_resets_table',1),(4,'2019_08_19_000000_create_failed_jobs_table',1),(5,'2020_12_29_162045_create_courses_table',1),(6,'2020_12_29_163258_create_course_user_table',1),(7,'2020_12_29_164100_create_lessons_table',1),(8,'2020_12_29_165136_create_lesson_times_table',1),(9,'2020_12_29_165639_create_lesson_time_user_table',1);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,7 +304,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$CdQLE0uyu70P03ymk0vQzu/n1DJPoOEqJHFKbPCZr4clEsFcfpvBC',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$PAlMssbAtBam/g0hecQKW.hod.KPq8zdVP0qxDcxQl8FdSiZzMAgy',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$vAuQQ9JkxOYdDW3ag7K.TeDvwqoDEopm8kfQadvHMacM/rP4Xq9/m',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$ZnusxR4qU9ruIaSVplItauYPlixxJij6CzDLx5YxiKjgqSNlP1npC',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$g8I/z/KmfAiKkuVmop0WPOHfkm5SoYrNZPaEmZIpMKgEAuyBeJ.WW',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$MYW.axT0Qaa.zyKR7OHUN.4nrLjHGNVjeaaZ.NAPrRFztO.oBKvxW',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$3X1xQ6dSjHZWNtMTmtTUVuCh0rGOy1kQ3wlKpW8PEWjN95YGmvbMO',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$PmMEcS1owwBZmgVLH5m05.yHg8M3aLiGmQG8SJxGO.WVp2qGrrEQS',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$D77EQE0DgrCvoCKpSN5oXOw6GosxAAeYiZASwR.rcmSnmhcyR4n.O',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$hqH5ko74q1zCFaeFaCJQv.S9Kea59Uv7tek86./6R1PAVJlqgKZgi',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -341,4 +317,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-05 12:27:44
+-- Dump completed on 2021-01-05 19:52:57
