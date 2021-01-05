@@ -19,7 +19,8 @@ class LessonController extends Controller
     }
     public function index(Course $course)
     {
-        $lessons = Lesson::where('course_id',$course->id)->get();
+        //$lessons = Lesson::where('course_id',$course->id)->get();
+        $lessons = $course->lessons;
         if(Auth::check()) {
             return view('courses.lessons.index')->withLessons($lessons)->withCourse($course);
         }
