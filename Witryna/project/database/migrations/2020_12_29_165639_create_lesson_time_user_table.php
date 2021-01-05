@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLessonUsersTable extends Migration
+class CreateLessonTimeUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateLessonUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('lesson_users', function (Blueprint $table) {
+        Schema::create('lesson_time_user', function (Blueprint $table) {
             $table->id();
 
             //powiązanie z konkretną lekcją o konkretnym czasie
-            $table->unsignedBigInteger('lesson_id')->default(1);
-            $table->foreign('lesson_id')->references('id')->on('lesson_times');
+            $table->unsignedBigInteger('lesson_time_id')->default(1);
+            $table->foreign('lesson_time_id')->references('id')->on('lesson_times');
 
             //powiązanie z danym użytkownikiem
             $table->unsignedBigInteger('user_id');

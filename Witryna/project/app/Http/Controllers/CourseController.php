@@ -147,37 +147,38 @@ class CourseController extends Controller
         return view('courses.course',['course'=>$course,'lessons'=>$lessons]);
     }
 
-
-    public function generateMark($id)
+    public function generateMark(Course $course)
     {
-        $users = User::all();
         $pluses = [];
         $presence = [];
         $averagepluses = [];
         $percentagepresence = [];
-        $toRemove = array('[',']');
 
+        $users = $course->users;
         foreach($users as $user){
+            $userPluses = 0;
+            $userPresence = 0;
+            $lessonCount = 0;
+            foreach($user->lessonTimes as $lessonTime){
+                $userPluses += $lessonTime->pivot->pluses;
+                $userPresence += $lessonTime->pivot->presence;
+                ++$lessonCount;
+            }
+            array_push($pluses, $userPluses);
+            array_push($presence, $userPresence);
 
-            $getPluses= \DB::table('lesson_users')->where('user_id',$user->id)->pluck('pluses');
-            $getPresence = \DB::table('lesson_users')->where('user_id',$user->id)->pluck('presence');
-
-            $newPluses = str_replace($toRemove, "", $getPluses);
-            $newPresence = str_replace($toRemove, "", $getPresence);
-
-            array_push($presence , $newPluses);
-            array_push($pluses , $newPresence);
-
-            $parts = explode(',',$newPluses);
-            array_push($averagepluses , array_sum($parts)/count($parts));
-
-            $parts = explode(',',$newPluses);
-            array_push($percentagepresence , ( array_sum($parts)/count($parts) )*100 );
+            if($lessonCount != 0) {
+                array_push($averagepluses, $userPluses / $lessonCount);
+                array_push($percentagepresence, $userPresence / $lessonCount * 100);
+            }
+            else{
+                array_push($averagepluses, 0);
+                array_push($percentagepresence, 0);
+            }
         }
 
         return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses)->
         withAveragepluses($averagepluses)->withPercentagepresence($percentagepresence);
-
     }
 
 

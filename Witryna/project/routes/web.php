@@ -24,14 +24,12 @@ Route::resource('courses.lessons' ,LessonController::class);
 Route::resource('comments',CommentController::class);
 
 Route::get('/courses/mine', [CourseController::class, 'mine'])->name('courses.mine');
+Route::get('/courses/{course}/generateMark',[CourseController::class,'generateMark'])->name('courses.generateMark');
 Route::resource('courses' ,CourseController::class);
 Route::resource('users', UsersController::class)->only([
     'index', 'edit', 'update'
 ]);;
 Route::post('/users/{id}/update',[App\Http\Controllers\UsersController::class,'update'])->middleware('auth');
-
-Route::get('/courses/{id}/generateMark',[CourseController::class,'generateMark'])->name('courses.generateMark');
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
