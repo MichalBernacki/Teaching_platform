@@ -23,10 +23,11 @@ class CourseController extends Controller
     {
         $this->middleware('auth');
     }
+
     public function index()
     {
         $courses = Course::all();
-        if(Auth::check()) {
+        if (Auth::check()) {
             return view('courses.index')->withCourses($courses);
         }
         return view('auth.login');
@@ -45,7 +46,7 @@ class CourseController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -69,28 +70,26 @@ class CourseController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function mine()
     {
         $user = Auth::user();
-        if(Gate::allows('student')){
+        if (Gate::allows('student')) {
             $courses = $user->courses;
-        }
-        elseif (Gate::allows('lecturer')){
+        } elseif (Gate::allows('lecturer')) {
             $courses = $user->lecturerCourses;
-        }
-        else{
+        } else {
             $courses = array();
         }
-        return view('courses.show',['courses'=>$courses,'user'=>$user]);
+        return view('courses.show', ['courses' => $courses, 'user' => $user]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -102,8 +101,8 @@ class CourseController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Course $course)
@@ -120,19 +119,20 @@ class CourseController extends Controller
 
     public function listparticipants($id)
     {
-        $course=Course::find($id);
+        $course = Course::find($id);
         return view('courses.listparticipants')->withCourse($course);
     }
-    public function confirm($courseid,$id)
+
+    public function confirm($courseid, $id)
     {
-        CourseUser::where(['course_id'=>$courseid,'user_id'=>$id])->update(['confirmed'=>1]);
-        return redirect()->route('courses.listparticipants',['id'=>$courseid]);
+        CourseUser::where(['course_id' => $courseid, 'user_id' => $id])->update(['confirmed' => 1]);
+        return redirect()->route('courses.listparticipants', ['id' => $courseid]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
@@ -143,8 +143,8 @@ class CourseController extends Controller
     public function course($id)
     {
         $course = Course::find($id);
-        $lessons = Lesson::where('course_id',$id)->get();
-        return view('courses.course',['course'=>$course,'lessons'=>$lessons]);
+        $lessons = Lesson::where('course_id', $id)->get();
+        return view('courses.course', ['course' => $course, 'lessons' => $lessons]);
     }
 
     public function generateMark(Course $course)
@@ -155,11 +155,11 @@ class CourseController extends Controller
         $percentagepresence = [];
 
         $users = $course->users;
-        foreach($users as $user){
+        foreach ($users as $user) {
             $userPluses = 0;
             $userPresence = 0;
             $lessonCount = 0;
-            foreach($user->lessonTimes as $lessonTime){
+            foreach ($user->lessonTimes as $lessonTime) {
                 $userPluses += $lessonTime->pivot->pluses;
                 $userPresence += $lessonTime->pivot->presence;
                 ++$lessonCount;
@@ -167,11 +167,10 @@ class CourseController extends Controller
             array_push($pluses, $userPluses);
             array_push($presence, $userPresence);
 
-            if($lessonCount != 0) {
+            if ($lessonCount != 0) {
                 array_push($averagepluses, $userPluses / $lessonCount);
                 array_push($percentagepresence, $userPresence / $lessonCount * 100);
-            }
-            else{
+            } else {
                 array_push($averagepluses, 0);
                 array_push($percentagepresence, 0);
             }
@@ -182,29 +181,48 @@ class CourseController extends Controller
     }
 
 
-   /* public function saveMark()
+    /* public function saveMark()
+     {
+         return view('courses.generateMark');
+     }
+    */
+
+
+    /*
+    public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
     {
-        return view('courses.generateMark');
+        $toRemove = array('[',']');
+
+        $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
+
+        $newValue = str_replace($toRemove, "", $getValue);
+
+        array_push($classActivity , $newValue);
+
+        $parts = explode(',',$newValue);
+        array_push($averageValue , array_sum($parts)/count($parts));
+
     }
-   */
+    */
 
+    public function join($id)
+    {
+        $course = Course::find($id);
 
+        $user = Auth::user();
 
+        if( CourseUser::where([['user_id', '=',$user->id], ['course_id', '=',$course->id]])->exists() ){
+            return view('courses.join.alreadyJoined')->with('course', $course);
+        }else{
+            $course_user = new CourseUser();
+            $course_user->course_id = $course->id;
+            $course_user->user_id = $user->id;
+            $course_user->confirmed = 0;
+            $course_user->save();
+
+            return view('courses.join.successJoined')->with('course', $course);
+        }
+
+        return view('courses.index');
+    }
 }
-
-/*
-public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
-{
-    $toRemove = array('[',']');
-
-    $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
-
-    $newValue = str_replace($toRemove, "", $getValue);
-
-    array_push($classActivity , $newValue);
-
-    $parts = explode(',',$newValue);
-    array_push($averageValue , array_sum($parts)/count($parts));
-
-}
-*/

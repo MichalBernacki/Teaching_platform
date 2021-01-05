@@ -19,3 +19,10 @@ $I->see('403');
 
 $I->amOnPage('/users/1/edit');
 $I->see('403');
+
+//can access to courses controller
+$I->amOnPage('/courses');
+$I->see('Courses list ');
+$I->amOnPage('/courses/1/join');
+$I->see('Successfully joined to the course ');
+

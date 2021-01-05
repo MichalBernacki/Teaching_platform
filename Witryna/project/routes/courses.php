@@ -16,6 +16,9 @@ Route::get('/courses/{id}/listparticipants', [CourseController::class, 'listpart
 Route::get('/courses/{courseid}/confirm/{id}', [CourseController::class, 'confirm'])
     ->name('courses.confirm');
 
+Route::get('/courses/{id}/join', [CourseController::class, 'join'])
+    ->name('courses.join');
+
 Route::resource('courses', CourseController::class);
 
 Route::resource('courses.lessons', LessonController::class);

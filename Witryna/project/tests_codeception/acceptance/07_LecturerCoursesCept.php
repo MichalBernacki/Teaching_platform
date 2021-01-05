@@ -14,7 +14,7 @@ $I->see('Lecturer Lecturer');
 $I->see("You're logged in!");
 
 $I->amOnPage('/courses');
-$I->see('Course course');
+$I->see('Courses list');
 
 $I->click('My courses');
 $I->amOnPage('/courses/mine');
