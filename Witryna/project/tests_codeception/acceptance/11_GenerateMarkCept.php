@@ -39,4 +39,29 @@ $I->amOnPage('/courses/mine');
 
 $I->click('Generate marks');
 $I->fillField('mark', '3.5');
+$I->click('Save mark');
 $I->seeInDatabase("course_user", ["mark" => "3.5"]);
+
+$I->click('Generate marks');
+$I->fillField('mark', '3.75');
+$I->click('Save mark');
+$I->seeInDatabase("course_user", ["mark" => "4"]);
+
+$I->click('Generate marks');
+$I->fillField('mark', '3.25');
+$I->click('Save mark');
+$I->seeInDatabase("course_user", ["mark" => "3.5"]);
+
+$I->click('Generate marks');
+$I->fillField('mark', '1');
+$I->click('Save mark');
+$I->see('The mark must be at least 2.');
+
+
+$I->fillField('mark', '7');
+$I->click('Save mark');
+$I->see('The mark may not be greater than 5.');
+
+
+
+

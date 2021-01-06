@@ -189,9 +189,10 @@ class CourseController extends Controller
       public function saveMark(Course $course, User $user)
      {
          request()->validate([
-             'mark' => 'required',
+             'mark' => 'required|numeric|min:2|max:5',
          ]);
          $mark = request('mark');
+         $mark = round($mark*2)/2;
 
          //CourseUser::where(['course_id' => $course->id, 'user_id' => $user->id])->update(['mark' => $mark ]);
          $course->users()->updateExistingPivot($user->id,['mark'=>$mark]);
