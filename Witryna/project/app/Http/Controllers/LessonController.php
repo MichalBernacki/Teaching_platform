@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Lesson;
+use App\Models\LessonTime;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -48,13 +49,20 @@ class LessonController extends Controller
     {
         request()->validate([
             'title' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'date' => 'required',
+            'time' => 'required'
         ]);
         $lesson = new Lesson();
         $lesson->course_id=$course->id;
         $lesson->title = request('title');
         $lesson->description = request('description');
+        $lessonTime = new LessonTime();
         $lesson->save();
+        $lessonTime->date = request('date');
+        $lessonTime->time = request('time');
+        $lessonTime->lesson_id = $lesson->id;
+        $lessonTime->save();
         return redirect()->route('courses.lessons.index',$course);
     }
 
