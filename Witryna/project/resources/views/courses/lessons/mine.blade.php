@@ -5,39 +5,58 @@
         </h2>
     </x-slot>
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <h1>
-            Lessons
-        </h1>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <h1 class="text-lg font-semibold m-4">Upcoming lessons for {{$user->name}}</h1>
+                <h2 class="text-lg m-4">Today's date and time: {{now()}}</h2>
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <h1>Upcoming lessons for {{$user->name}}</h1> <br>
-            <h2>Today's date and time: {{now()}}</h2>
-            <table>
-                @foreach ($lessonTimes as $key=>$lessonTime)
-                    <div clas="w-full py-6 pt-6">
+
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
                     <tr>
-                        <td>
-                            {{$key+1}}
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Course
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Lesson
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Date
+                        </th>
+                        <th scope="col"
+                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            Time
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                    @foreach ($lessonTimes as $key=>$lessonTime)
+                    <tr>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">{{$lessonTime->lesson->course->name}}</div>
                         </td>
-                        <td>
-                            {{$lessonTime->lesson->course->name}}
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <a href="{{route('courses.lessons.show', [$lessonTime->lesson->course, $lessonTime->lesson])}}"
+                               class="text-indigo-600 hover:text-indigo-900">
+                                {{$lessonTime->lesson->title}}
+                            </a>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">{{$lessonTime->date}}</div>
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            <div class="text-sm text-gray-500">{{$lessonTime->time}}</div>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            {{$lessonTime->lesson->title}}
-                        </td>
-                        <td>
-                            {{$lessonTime->time}}
-                        </td>
-                        <td>
-                            {{$lessonTime->date}}
-                        </td>
-                    </tr>
-                    </div>
-                @endforeach
-            </table>
+                    @endforeach
+                    </tbody>
+                </table>
+
+            </div>
         </div>
     </div>
 
