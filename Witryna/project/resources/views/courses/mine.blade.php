@@ -38,6 +38,16 @@
                     </tr>
                 @endforeach
             </table>
+
+            @can('lecturer')
+                 <div class="flex items-center justify-start mt-4 px-4 pb-5">
+                    <form method="get"  action="{{route('courses.create')}}">
+                        <x-button class="ml-4">
+                             {{ __('Create course') }}
+                        </x-button>
+                    </form>
+                   </div>
+            @endcan('lecturer')
         </div>
     </div>
 
