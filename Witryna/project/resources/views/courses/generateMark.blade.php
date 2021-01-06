@@ -12,13 +12,13 @@
         @foreach ( $course->courseUser as $key => $user )
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <p> {{$user->name}}</p>
-                <p>Pluses from every lesson: {{$pluses[$key]}}</p>
-                <p>Presence from every lesson: {{$presence[$key]}}</p>
+                <p>Pluses from all lessons: {{$pluses[$key]}}</p>
+                <p>Presence from all lessons: {{$presence[$key]}}</p>
                 <p>Average pluses per lesson: {{$averagepluses[$key]}}</p>
                 <p>Presence: {{$percentagepresence[$key]}}%</p>
-                <p>Last given mark of 0 if not set: {{$user->pivot->mark}}</p>
+                <p>Last given mark or 0 if not set: {{$user->pivot->mark}}</p>
 
-                <form method="GET" action="{{ route('courses.saveMark',  [$course, $user] ) }}">
+                <form method="GET" action="{{ route('courses.saveMark',  ['course' => $course, 'user' => $user]) }}">
                     @csrf
 
                     <div class="field">

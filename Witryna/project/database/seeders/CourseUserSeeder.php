@@ -19,6 +19,14 @@ class CourseUserSeeder extends Seeder
             'confirmed' =>true,
             'mark' => 0
         ]);
+
+        DB::table('course_user')->insert([
+            'course_id' => 2,
+            'user_id' => 1,
+            'confirmed' =>true,
+            'mark' => 0
+        ]);
+
         DB::table('course_user')->insert([
             'user_id' => 1,
             'course_id'=>1,

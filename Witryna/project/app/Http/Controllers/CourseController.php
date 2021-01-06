@@ -189,9 +189,8 @@ class CourseController extends Controller
          ]);
          $mark = request('mark');
 
-         //CourseUser::where(['course_id' => $course->id, 'user_id' => $user->id])->update(['mark' => $mark ]);
-         $course->users()->updateExistingPivot($user->id,['mark'=>$mark], true);
-
+         CourseUser::where(['course_id' => $course->id, 'user_id' => $user->id])->update(['mark' => $mark ]);
+         //$course->users()->updateExistingPivot($user->id,['mark'=>$mark]);
 
          return redirect()->route('courses.mine');
      }
