@@ -12,4 +12,8 @@ class LessonTime extends Model
     public function users(){
         return $this->belongsToMany(User::class)->withPivot('presence', 'pluses');
     }
+
+    public function lesson(){
+        return $this->belongsTo(Lesson::class);
+    }
 }
