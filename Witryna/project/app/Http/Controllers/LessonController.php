@@ -108,7 +108,8 @@ class LessonController extends Controller
         $user = Auth::user();
         $lessonTimes = array();
         if (Gate::allows('student')) {
-            foreach($user->lessonTimes()->whereDate('date', '>=', now())->orderBy('time')->orderBy('date')->get() as $lessonTime){
+            foreach($user->lessonTimes()->whereDate('date', '>=', now())
+                        ->orderBy('date')->orderBy('time')->get() as $lessonTime){
                 array_push($lessonTimes, $lessonTime);
             }
         }
