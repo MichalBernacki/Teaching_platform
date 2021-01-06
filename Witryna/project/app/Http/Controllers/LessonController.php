@@ -57,7 +57,6 @@ class LessonController extends Controller
         $lesson->title = request('title');
         $lesson->description = request('description');
         $lessonTime = new LessonTime();
-        dump($lesson);
         $lesson->save();
         $lessonTime->date = request('date');
         $lessonTime->time = request('time');
