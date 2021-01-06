@@ -11,9 +11,9 @@
                 Course
             </div>
             <div class="flex-1">
-                Name: {{$course->name}}</div>
+                {{$course->name}}</div>
             <div class="flex-1">
-                Description: {{$course->description}}
+                {{$course->description}}
             </div>
         </div>
             <table class="min-w-full divide-y divide-gray-200">
@@ -22,6 +22,9 @@
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Date</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Time</th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Title</th>
@@ -37,7 +40,16 @@
             @foreach ($lessons as $lesson)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            Date
+                            @foreach($lesson->lessonTimes as $tmp)
+                                {{$tmp->date}}
+                                <br/>
+                            @endforeach
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            @foreach($lesson->lessonTimes as $tmp)
+                                {{$tmp->time}}
+                                <br/>
+                            @endforeach
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             {{$lesson->title}}

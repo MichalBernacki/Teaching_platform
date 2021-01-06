@@ -34,6 +34,13 @@
                                 <li class="help is-danger">{{$errors->first('date')}}</li>
                             @endif
                         <br/>
+                            <label>Time of lesson:</label>
+                            <br/>
+                            <input class="input" {{$errors->has('time') ? 'is-danger' : ''}} type="time" name="time" >
+                            @if($errors->has('time'))
+                                <li class="help is-danger">{{$errors->first('time')}}</li>
+                            @endif
+                            <br/>
                         <x-button>
                             {{ __('Create') }}
                         </x-button>
