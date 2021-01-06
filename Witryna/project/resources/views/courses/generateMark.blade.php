@@ -9,7 +9,8 @@
         <h1>
             Generate Marks
         </h1>
-        @foreach ( $course->courseUser as $key => $user )
+        @forelse ($course->courseUser as $key => $user )
+
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden items-center sm:rounded-lg">
                 <p> {{$user->name}}</p>
                 <p>Pluses from all lessons: {{$pluses[$key]}}</p>
@@ -41,7 +42,11 @@
                     </div>
                 </form>
             </div>
-        @endforeach
+        @empty
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden items-center sm:rounded-lg">
+                <p>No students in this course</p>
+            </div>
+        @endforelse
 
 
     </div>
