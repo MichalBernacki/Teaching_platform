@@ -83,7 +83,7 @@ class CourseController extends Controller
         } else {
             $courses = array();
         }
-        return view('courses.show', ['courses' => $courses, 'user' => $user]);
+        return view('courses.mine', ['courses' => $courses, 'user' => $user]);
     }
 
     /**
@@ -140,11 +140,9 @@ class CourseController extends Controller
         //
     }
 
-    public function course($id)
+    public function show(Course $course)
     {
-        $course = Course::find($id);
-        $lessons = Lesson::where('course_id', $id)->get();
-        return view('courses.course', ['course' => $course, 'lessons' => $lessons]);
+        return view('courses.show', ['course' => $course]);
     }
 
     public function generateMark(Course $course)
