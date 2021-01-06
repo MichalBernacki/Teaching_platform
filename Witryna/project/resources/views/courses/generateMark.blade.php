@@ -21,11 +21,11 @@
                     @csrf
 
                     <div class="field">
-                        <label class="label" for="mark">Type mark</label>
+                        <label class="label" for="mark">Type mark below</label>
 
                         <div class="control">
                             <input class="input {{ $errors->has('mark') ? 'is-danger' : '' }}" type="text" name="mark"
-                                   id="mark">
+                                   id="mark" value="{{$user->mark->mark}}">
 
                             @if($errors->has('mark'))
                                 <li class="help is-danger">{{ $errors->first('mark') }}</li>
@@ -33,6 +33,10 @@
 
                         </div>
                     </div>
+
+
+
+
 
                     <div class="field is-grouped">
                         <div class="control">

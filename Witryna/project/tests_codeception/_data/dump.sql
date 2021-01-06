@@ -27,6 +27,7 @@ CREATE TABLE `course_user` (
   `user_id` bigint unsigned NOT NULL,
   `course_id` bigint unsigned NOT NULL DEFAULT '1',
   `confirmed` tinyint(1) NOT NULL,
+  `mark` int unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -43,7 +44,7 @@ CREATE TABLE `course_user` (
 
 LOCK TABLES `course_user` WRITE;
 /*!40000 ALTER TABLE `course_user` DISABLE KEYS */;
-INSERT INTO `course_user` VALUES (1,4,2,1,NULL,NULL),(2,1,1,1,NULL,NULL);
+INSERT INTO `course_user` VALUES (1,4,2,1,0,NULL,NULL),(2,1,1,1,0,NULL,NULL);
 /*!40000 ALTER TABLE `course_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$MYW.axT0Qaa.zyKR7OHUN.4nrLjHGNVjeaaZ.NAPrRFztO.oBKvxW',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$3X1xQ6dSjHZWNtMTmtTUVuCh0rGOy1kQ3wlKpW8PEWjN95YGmvbMO',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$PmMEcS1owwBZmgVLH5m05.yHg8M3aLiGmQG8SJxGO.WVp2qGrrEQS',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$D77EQE0DgrCvoCKpSN5oXOw6GosxAAeYiZASwR.rcmSnmhcyR4n.O',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$hqH5ko74q1zCFaeFaCJQv.S9Kea59Uv7tek86./6R1PAVJlqgKZgi',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$ajcm2lXvuosBKXSbymV7UuHGACx67w7L3NHYcn2u7WxP1QjMPVtpG',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$mITCA1ZpWZ1UdXs.ezAuX.utuuqCfFRZNwa3KXM9yNYhrSEnEsqLq',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$QDeSnI0f2TRXrFMT3wnbruK.2U4mffN1RJRZDPNOSEziE9oPykWh.',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$YlphRgKAvlTDQ7M/5AxsS.3wCZxWfPFS3UmJpNooJMP9jZtyOmkhm',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$JjbhDuWvNOeQ7nq0V4QB9OCzFEwvwibUQEry9oIupmAo7Gu7C120i',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -317,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-05 19:52:57
+-- Dump completed on 2021-01-06 13:53:43

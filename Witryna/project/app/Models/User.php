@@ -23,6 +23,10 @@ class User extends Authenticatable
         return $this->belongsToMany(LessonTime::class)->withPivot('presence', 'pluses');
     }
 
+    public function mark(){
+        return $this->hasOne(CourseUser::class);
+    }
+
     /**
      * The attributes that are mass assignable.
      *
