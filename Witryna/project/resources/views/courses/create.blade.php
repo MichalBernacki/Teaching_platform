@@ -40,14 +40,13 @@
                     </div>
                 </div>
 
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button class="button is-link" type="submit">Create</button>
-                    </div>
+                <div class="flex items-center justify-start mt-4 px-4 pb-5">
+                        <x-button class="ml-4">
+                            {{ __('Create') }}
+                        </x-button>
                 </div>
 
             </form>
-
         </div>
     </div>
 </x-app-layout>

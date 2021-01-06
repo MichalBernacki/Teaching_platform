@@ -23,6 +23,8 @@ class User extends Authenticatable
         return $this->belongsToMany(LessonTime::class)->withPivot('presence', 'pluses');
     }
 
+
+
     /**
      * The attributes that are mass assignable.
      *

@@ -40,7 +40,11 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('/courses/create');
+        if( Gate::allows('lecturer')) {
+            return view('/courses/create');
+        }
+        return redirect()->route('courses.mine');
+
     }
 
     /**
@@ -174,34 +178,26 @@ class CourseController extends Controller
             }
         }
 
-        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses)->
-        withAveragepluses($averagepluses)->withPercentagepresence($percentagepresence);
+        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->
+        withPluses($pluses)->withAveragepluses($averagepluses)->
+        withPercentagepresence($percentagepresence)->withCourse($course);
     }
 
 
-    /* public function saveMark()
+      public function saveMark(Course $course, User $user)
      {
-         return view('courses.generateMark');
+         request()->validate([
+             'mark' => 'required|numeric|min:2|max:5',
+         ]);
+         $mark = request('mark');
+         $mark = round($mark*2)/2;
+
+         //CourseUser::where(['course_id' => $course->id, 'user_id' => $user->id])->update(['mark' => $mark ]);
+         $course->users()->updateExistingPivot($user->id,['mark'=>$mark]);
+
+         return redirect()->route('courses.mine');
      }
-    */
 
-
-    /*
-    public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
-    {
-        $toRemove = array('[',']');
-
-        $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
-
-        $newValue = str_replace($toRemove, "", $getValue);
-
-        array_push($classActivity , $newValue);
-
-        $parts = explode(',',$newValue);
-        array_push($averageValue , array_sum($parts)/count($parts));
-
-    }
-    */
 
     public function join($id)
     {
@@ -224,3 +220,20 @@ class CourseController extends Controller
         return view('courses.index');
     }
 }
+
+/*
+   public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
+   {
+       $toRemove = array('[',']');
+
+       $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
+
+       $newValue = str_replace($toRemove, "", $getValue);
+
+       array_push($classActivity , $newValue);
+
+       $parts = explode(',',$newValue);
+       array_push($averageValue , array_sum($parts)/count($parts));
+
+   }
+   */

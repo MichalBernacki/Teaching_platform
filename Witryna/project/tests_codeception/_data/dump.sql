@@ -27,6 +27,7 @@ CREATE TABLE `course_user` (
   `user_id` bigint unsigned NOT NULL,
   `course_id` bigint unsigned NOT NULL DEFAULT '1',
   `confirmed` tinyint(1) NOT NULL,
+  `mark` double unsigned NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -34,7 +35,7 @@ CREATE TABLE `course_user` (
   KEY `course_user_course_id_foreign` (`course_id`),
   CONSTRAINT `course_user_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
   CONSTRAINT `course_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +44,7 @@ CREATE TABLE `course_user` (
 
 LOCK TABLES `course_user` WRITE;
 /*!40000 ALTER TABLE `course_user` DISABLE KEYS */;
-INSERT INTO `course_user` VALUES (1,4,2,1,NULL,NULL),(2,1,1,1,NULL,NULL);
+INSERT INTO `course_user` VALUES (1,4,2,1,0,NULL,NULL),(2,1,2,1,0,NULL,NULL),(3,1,1,1,0,NULL,NULL);
 /*!40000 ALTER TABLE `course_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$aXpCp7sbSGmd5Bw0SeQK.e1n2s3UuOToxYJhUl352O3rNX689o0oS',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$sABCM1D/PRgPngdafgq86O7qFGh35vj4QdtpMHFrZ20uINMqy.Aj.',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$kgC02x1tbXMIfjuSjl.nSuG7RtxMSyal7TUla/dKHgAdnWYvunwXK',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$u4LopHbDy79ZxSFPsjnPgeUF5fAXczZzkIa1kQpM3kjVC6W7M/7bC',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$UgbBwy.BWvGDzjEQGosQUeCJSih.ZFJD0lxsVPshq1HkjPiYR9S46',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$OOuld9zZ6WvoxFFfXcsSk.XNoZhk795GvVkM0S6LgSIBZNPK9TroG',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$2cXgxm3UmXaLRoYlbsYgmeYIR5HwLAheyj58pttj9M8Lvxsr/yyay',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$K8.q8S95lpkYouC0sdG.oOKb9Ja2KvHza9O/GMJSwCB.AnabJTdBu',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$mwnZJa3LhXuVGNalA40C5uNS6YQnSSueGjoPR1bjQHdCVDLeqbnEW',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$pjA.VpT0gXfv6eDQFrdPDOGd6p5GYL/KiYuD5uYpiYh1KXPdKk/Jy',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -317,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-06 19:20:19
+-- Dump completed on 2021-01-06 21:38:05
