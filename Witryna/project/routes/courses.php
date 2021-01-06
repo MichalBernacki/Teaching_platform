@@ -21,4 +21,7 @@ Route::get('/courses/{id}/join', [CourseController::class, 'join'])
 
 Route::resource('courses', CourseController::class);
 
+Route::get('/lessons/mine', [LessonController::class, 'mine'])
+    ->name('lessons.mine');
+
 Route::resource('courses.lessons', LessonController::class);

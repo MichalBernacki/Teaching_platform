@@ -5,6 +5,7 @@ use App\Models\Lesson;
 use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class LessonController extends Controller
 {
@@ -100,5 +101,17 @@ class LessonController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function mine()
+    {
+        $user = Auth::user();
+        $lessonTimes = array();
+        if (Gate::allows('student')) {
+            foreach($user->lessonTimes()->whereDate('date', '>=', now())->orderBy('time')->orderBy('date')->get() as $lessonTime){
+                array_push($lessonTimes, $lessonTime);
+            }
+        }
+        return view('courses.lessons.mine', ['lessonTimes' => $lessonTimes, 'user' => $user]);
     }
 }
