@@ -36,3 +36,7 @@ $I->click('Save mark');
 $I->seeInDatabase("course_user", ["mark" => "4"]);
 
 $I->amOnPage('/courses/mine');
+
+$I->click('Generate marks');
+$I->fillField('mark', '3.5');
+$I->seeInDatabase("course_user", ["mark" => "3.5"]);

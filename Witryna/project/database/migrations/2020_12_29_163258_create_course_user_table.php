@@ -22,7 +22,7 @@ class CreateCourseUserTable extends Migration
             $table->unsignedBigInteger('course_id')->default(1);
             $table->foreign('course_id')->references('id')->on('courses');
             $table->boolean('confirmed');
-            $table->unsignedInteger('mark')->default(0);
+            $table->unsignedDouble('mark')->default(0.0);
             $table->timestamps();
         });
     }
