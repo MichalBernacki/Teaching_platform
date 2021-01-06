@@ -37,7 +37,10 @@
                     @foreach ($lessonTimes as $key=>$lessonTime)
                     <tr>
                         <td class="px-6 py-4 whitespace-nowrap">
-                            <div class="text-sm text-gray-500">{{$lessonTime->lesson->course->name}}</div>
+                            <a href="{{route('courses.show', [$lessonTime->lesson->course])}}"
+                               class="text-indigo-600 hover:text-indigo-900">
+                                {{$lessonTime->lesson->course->name}}
+                            </a>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{route('courses.lessons.show', [$lessonTime->lesson->course, $lessonTime->lesson])}}"
