@@ -59,3 +59,5 @@ $I->see('KSP');
 $I->see('kurs podstawowy komputerowych systemów pomiarowych');
 
 $I->seeInDatabase("courses", ["name" => "KSP", "description" => "kurs podstawowy komputerowych systemów pomiarowych"]);
+
+
