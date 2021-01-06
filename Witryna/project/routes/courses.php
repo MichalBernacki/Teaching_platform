@@ -10,6 +10,9 @@ Route::get('/courses/mine', [CourseController::class, 'mine'])
 Route::get('/courses/{course}/generateMark', [CourseController::class, 'generateMark'])
     ->name('courses.generateMark');
 
+Route::get('/courses/{course}/saveMark', [CourseController::class, 'saveMark'])
+    ->name('courses.saveMark');
+
 Route::get('/courses/{id}/listparticipants', [CourseController::class, 'listparticipants'])
     ->name('courses.listparticipants');
 

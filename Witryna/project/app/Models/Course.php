@@ -10,7 +10,7 @@ class Course extends Model
     use HasFactory;
 
     public function users(){
-        return $this->belongsToMany(User::class)->withPivot(['confirmed']);
+        return $this->belongsToMany(User::class)->withPivot('confirmed', 'mark');
     }
 
     public function lecturer(){
@@ -19,5 +19,9 @@ class Course extends Model
 
     public function lessons(){
         return $this->hasMany(Lesson::class);
+    }
+
+    public function courseUser(){
+        return $this->belongsToMany(User::class)->withPivot(['mark']);
     }
 }

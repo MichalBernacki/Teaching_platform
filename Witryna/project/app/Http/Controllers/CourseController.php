@@ -176,16 +176,26 @@ class CourseController extends Controller
             }
         }
 
-        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->withPluses($pluses)->
-        withAveragepluses($averagepluses)->withPercentagepresence($percentagepresence);
+        return view('courses.generateMark')->withUsers($users)->withPresence($presence)->
+        withPluses($pluses)->withAveragepluses($averagepluses)->
+        withPercentagepresence($percentagepresence)->withCourse($course);
     }
 
 
-    /* public function saveMark()
+      public function saveMark(Course $course, User $user)
      {
-         return view('courses.generateMark');
+         request()->validate([
+             'mark' => 'required',
+         ]);
+         $mark = request('mark');
+
+         //CourseUser::where(['course_id' => $course->id, 'user_id' => $user->id])->update(['mark' => $mark ]);
+         $course->users()->updateExistingPivot($user->id,['mark'=>$mark], true);
+
+
+         return redirect()->route('courses.mine');
      }
-    */
+
 
 
     /*
