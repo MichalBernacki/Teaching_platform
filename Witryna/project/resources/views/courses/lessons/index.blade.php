@@ -6,33 +6,59 @@
     </x-slot>
 
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <h1>
-            Course
-        </h1>
-
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <h1>Name: {{$course->name}}</h1>
-            <p>Description: {{$course->description}}</p>
-            <strong>List of lessons:</strong>
-            <table>
-                @foreach ($lessons as $lesson)
+        <div class="flex mb-4">
+            <div class="flex-1">
+                Course
+            </div>
+            <div class="flex-1">
+                Name: {{$course->name}}</div>
+            <div class="flex-1">
+                Description: {{$course->description}}
+            </div>
+        </div>
+            <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Date</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Title</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Description</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Join!</th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+            @foreach ($lessons as $lesson)
                     <tr>
-                        <td>
+                        <td class="px-6 py-4 whitespace-nowrap">
+                            Date
+                        </td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             {{$lesson->title}}
                         </td>
-                        <td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             {{$lesson->description}}
                         </td>
-                        <td>
+                        <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{route('courses.lessons.show',[$course,$lesson])}}">Join</a>
                         </td>
                     </tr>
                 @endforeach
+                </tbody>
             </table>
             @can('lecturer')
-                <a href="{{route('courses.lessons.create',$course)}}">Create new lesson</a>
+                <form method="get"  action="{{route('courses.lessons.create',$course)}}">
+                    <x-button class="ml-4">
+                        {{ __('Create new lesson') }}
+                    </x-button>
+                </form>
             @endcan
-        </div>
     </div>
 
 </x-app-layout>
