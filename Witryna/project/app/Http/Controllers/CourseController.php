@@ -40,7 +40,11 @@ class CourseController extends Controller
      */
     public function create()
     {
-        return view('/courses/create');
+        if( Gate::allows('lecturer')) {
+            return view('/courses/create');
+        }
+        return redirect()->route('courses.mine');
+
     }
 
     /**
