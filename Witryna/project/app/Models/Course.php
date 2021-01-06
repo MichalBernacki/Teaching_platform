@@ -21,7 +21,4 @@ class Course extends Model
         return $this->hasMany(Lesson::class);
     }
 
-    public function courseUser(){
-        return $this->belongsToMany(User::class)->withPivot(['mark']);
-    }
 }

@@ -9,7 +9,7 @@
         <h1>
             Generate Marks
         </h1>
-        @forelse ($course->courseUser as $key => $user )
+        @forelse ($course->users as $key => $user )
 
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden items-center sm:rounded-lg">
                 <p> {{$user->name}}</p>
