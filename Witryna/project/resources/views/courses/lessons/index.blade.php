@@ -34,6 +34,9 @@
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Join!</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Edit!</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -60,6 +63,11 @@
                         <td class="px-6 py-4 whitespace-nowrap">
                             <a href="{{route('courses.lessons.show',[$course,$lesson])}}">Join</a>
                         </td>
+                        @can('lecturer')
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{route('courses.lessons.edit',[$course,$lesson])}}"><strong>Edit</strong></a>
+                            </td>
+                        @endcan('lecturer')
                     </tr>
                 @endforeach
                 </tbody>

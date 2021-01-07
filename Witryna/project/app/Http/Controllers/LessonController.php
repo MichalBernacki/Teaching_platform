@@ -83,9 +83,9 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course, Lesson $lesson)
     {
-        //
+        return view('courses.lessons.edit')->withLesson($lesson)->withCourse($course);
     }
 
     /**
@@ -95,9 +95,16 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Course $course, Lesson $lesson)
     {
-        //
+        request()->validate([
+            'title' => ['required'],
+            'description' => ['required']
+        ]);
+        $lesson->title = request('title');
+        $lesson->description = request('description');
+        $lesson->update();
+        return redirect()->route('courses.lessons.index',$course);
     }
 
     /**
