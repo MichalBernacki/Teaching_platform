@@ -123,4 +123,18 @@ class LessonController extends Controller
         }
         return view('courses.lessons.mine', ['lessonTimes' => $lessonTimes, 'user' => $user]);
     }
+    public function presence(Course $course,Lesson $lesson)
+    {
+        return view('courses.lessons.presence')->withCourse($course)->withLesson($lesson);
+    }
+    public function save(Request $request,Course $course,Lesson $lesson)
+    {
+        $lessonTimes=$lesson->lessonTimes->first();
+        foreach($lesson->course->users as $user)
+        {
+            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>request('presence'.$user->id),'pluses'=>request('pluses'.$user->id)]);
+        }
+        return redirect()->route('courses.lessons.show',[$course,$lesson]);
+    }
+
 }
