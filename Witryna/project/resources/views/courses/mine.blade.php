@@ -33,7 +33,9 @@
                             @endcan('lecturer')
                         </td>
                         <td>
+                            @can('lecturer')
                             <a href="{{route('courses.generateMark',$course->id)}}"><strong>Generate marks</strong></a>
+                            @endcan('lecturer')
                         </td>
                     </tr>
                 @endforeach

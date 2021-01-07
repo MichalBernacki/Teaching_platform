@@ -151,6 +151,10 @@ class CourseController extends Controller
 
     public function generateMark(Course $course)
     {
+        if( !Gate::allows('lecturer')) {
+            return redirect()->route('courses.mine');
+        }
+
         $pluses = [];
         $presence = [];
         $averagepluses = [];
