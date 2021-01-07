@@ -156,7 +156,7 @@ CREATE TABLE `lesson_times` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `lesson_times_lesson_id_foreign` (`lesson_id`),
-  CONSTRAINT `lesson_times_lesson_id_foreign` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`id`)
+  CONSTRAINT `lesson_times_lesson_id_foreign` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -305,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$sIf3XcjKF3RdTu79gRvphuRI6x0tpAJ7IUm0VrOKS.SJZxMd8mQJK',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$gPcpH5eyybrAjSMjxFDOc.vi3bQMSI7b2jykcdg.jez2kvipX4NOi',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$DwC4dfM4rhbprC7Ju6ziBuPyleoXeIkCA2heRZcX1t8t9HOS.2xBS',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$UjB6Lk5RkDqlqfqbmxGn/uKyLfL23wVA38whv3so.Z77Uy69Kjrcu',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$Iceh8rLiCD09938b5YD96ePcajpDJwpu5Kao5957iVWj7vEivEQT2',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$RHQDmQuJYyt7jfiL96tAX.cm.hBBTfso9Zy6fUX8qmjcXFd0SGkgS',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$tw2VG.9r82j4vxwkJvV8WuKEy0M9izOe6Qut4cxOgd2lXEOh.66Sm',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$hQxw6UMUnAdOXd6wWsnJGubFrubF3G6k5B61GQze9LMWoGpI/e8by',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$7CN8tGzd58oRxVDpK5XXp.6sZQcu7M4wF.Cclu68joZIIhe8MBt1W',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$y.BZWbW5IBOd2z5VP4RbDOXMOax0VbZv2VTR1Fgg..Vkj616UL2d2',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -318,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-07 19:55:13
+-- Dump completed on 2021-01-07 21:05:04

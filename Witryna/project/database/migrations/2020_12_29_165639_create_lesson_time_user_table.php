@@ -18,7 +18,7 @@ class CreateLessonTimeUserTable extends Migration
 
             //powiązanie z konkretną lekcją o konkretnym czasie
             $table->unsignedBigInteger('lesson_time_id')->default(1);
-            $table->foreign('lesson_time_id')->references('id')->on('lesson_times');
+            $table->foreign('lesson_time_id')->references('id')->on('lesson_times')->onDelete('cascade');
 
             //powiązanie z danym użytkownikiem
             $table->unsignedBigInteger('user_id');

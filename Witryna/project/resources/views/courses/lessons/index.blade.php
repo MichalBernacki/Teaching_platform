@@ -37,6 +37,9 @@
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Edit!</th>
+                    <th scope="col"
+                        class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Delete!</th>
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
@@ -66,6 +69,15 @@
                         @can('lecturer')
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="{{route('courses.lessons.edit',[$course,$lesson])}}"><strong>Edit</strong></a>
+                            </td>
+                            <td>
+                            <form method="post" action="{{ route('courses.lessons.destroy',[$course,$lesson]) }}">
+                                @csrf
+                                @method("DELETE")
+                                <x-button class="ml-4">
+                                    {{ __('Delete') }}
+                                </x-button>
+                            </form>
                             </td>
                         @endcan('lecturer')
                     </tr>

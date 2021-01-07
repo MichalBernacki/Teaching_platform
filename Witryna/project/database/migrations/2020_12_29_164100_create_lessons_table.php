@@ -18,7 +18,7 @@ class CreateLessonsTable extends Migration
 
             //powiązanie do kursu
             $table->unsignedBigInteger('course_id')->default(1);
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
 
             //tytuł i opis lekcji występującej w danym kursie
             $table->string('title');

@@ -113,9 +113,10 @@ class LessonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course, Lesson $lesson)
     {
-        //
+        $lesson->delete();
+        return redirect()->route('courses.lessons.index',$course);
     }
 
     public function mine()

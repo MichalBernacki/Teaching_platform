@@ -18,7 +18,7 @@ class CreateLessonTimesTable extends Migration
 
             // lekcja w danym kursie
             $table->unsignedBigInteger('lesson_id')->default(1);
-            $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');
 
             //data i godzina danego wystąpienia lekcji
             $table->time('time');
@@ -35,6 +35,7 @@ class CreateLessonTimesTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('lesson_times');
     }
 }
