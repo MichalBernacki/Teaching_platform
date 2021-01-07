@@ -17,10 +17,10 @@ class CreateCourseUserTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->unsignedBigInteger('course_id')->default(1);
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->foreign('course_id')->references('id')->on('courses')->onDelete('cascade');
             $table->boolean('confirmed');
             $table->unsignedDouble('mark')->default(0.0);
             $table->timestamps();

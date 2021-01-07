@@ -33,8 +33,8 @@ CREATE TABLE `course_user` (
   PRIMARY KEY (`id`),
   KEY `course_user_user_id_foreign` (`user_id`),
   KEY `course_user_course_id_foreign` (`course_id`),
-  CONSTRAINT `course_user_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`),
-  CONSTRAINT `course_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
+  CONSTRAINT `course_user_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `course_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -64,7 +64,7 @@ CREATE TABLE `courses` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `courses_lecturer_id_foreign` (`lecturer_id`),
-  CONSTRAINT `courses_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `users` (`id`)
+  CONSTRAINT `courses_lecturer_id_foreign` FOREIGN KEY (`lecturer_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -125,7 +125,7 @@ CREATE TABLE `lesson_time_user` (
   PRIMARY KEY (`id`),
   KEY `lesson_time_user_lesson_time_id_foreign` (`lesson_time_id`),
   KEY `lesson_time_user_user_id_foreign` (`user_id`),
-  CONSTRAINT `lesson_time_user_lesson_time_id_foreign` FOREIGN KEY (`lesson_time_id`) REFERENCES `lesson_times` (`id`),
+  CONSTRAINT `lesson_time_user_lesson_time_id_foreign` FOREIGN KEY (`lesson_time_id`) REFERENCES `lesson_times` (`id`) ON DELETE CASCADE,
   CONSTRAINT `lesson_time_user_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -186,7 +186,7 @@ CREATE TABLE `lessons` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `lessons_course_id_foreign` (`course_id`),
-  CONSTRAINT `lessons_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`)
+  CONSTRAINT `lessons_course_id_foreign` FOREIGN KEY (`course_id`) REFERENCES `courses` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -305,7 +305,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$RHQDmQuJYyt7jfiL96tAX.cm.hBBTfso9Zy6fUX8qmjcXFd0SGkgS',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$tw2VG.9r82j4vxwkJvV8WuKEy0M9izOe6Qut4cxOgd2lXEOh.66Sm',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$hQxw6UMUnAdOXd6wWsnJGubFrubF3G6k5B61GQze9LMWoGpI/e8by',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$7CN8tGzd58oRxVDpK5XXp.6sZQcu7M4wF.Cclu68joZIIhe8MBt1W',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$y.BZWbW5IBOd2z5VP4RbDOXMOax0VbZv2VTR1Fgg..Vkj616UL2d2',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$z/ETKQbGXjlXFQT5NLRUL.8gIDZ8IKkrCR8o3X4cQfF659HNv/WTG',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$qYssObHQgEv.TSDR2Il.0u7FW5W6omEmcLA48/hw89gx3uEUaF7Vu',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$Ux9HN2P3m5a4TNFA7fPm0.TkeVZioCPiMKekJcQWfWwBd2nFPnO.O',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$6mBlxP1fHDuMm4.KWU/3Suu6nFIqSimJ7b5JuMo4M1oI0HOjFEsXe',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$alPaikSMNj2bsJxlVEo3v.xMXy4jhFJ605VuagzJcAJnuR1IdzRG.',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -318,4 +318,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-07 21:05:04
+-- Dump completed on 2021-01-07 23:08:39
