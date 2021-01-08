@@ -18,66 +18,59 @@
                         </form>
                     </div>
                 @endcan('lecturer')
-                    <table class="min-w-full divide-y divide-gray-200">
-                        <thead class="bg-gray-50">
-                        <tr>
-                            <th scope="col"
-                                class="px-6 py-3 w-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-
-                            </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <x-table.table>
+                        <x-table.thead>
+                        <x-table.tr>
+                            <x-table.th class="w-1">
+                            </x-table.th>
+                            <x-table.th>
                                 Course name
-                            </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            </x-table.th>
+                            <x-table.th>
                                 Description
-                            </th>
+                            </x-table.th>
                             @can('lecturer')
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            </th>
+                                <x-table.th>
+                                </x-table.th>
+
+                                <x-table.th>
+                                </x-table.th>
+
+                                <x-table.th>
+                                </x-table.th>
                             @endcan('lecturer')
-                        </tr>
-                        </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                        </x-table.tr>
+                        </x-table.thead>
+                        <x-table.tbody>
                         @foreach ($courses as $key=>$course)
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    {{$key+1}}
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{route('courses.show', [$course])}}"
-                                       class="text-indigo-600 hover:text-indigo-900">
-                                        {{$course->name}}
-                                    </a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    {{$course->description}}
-                                </td>
-                                @can('lecturer')
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                <x-table.tr>
+                                    <x-table.td>
+                                        {{$key+1}}
+                                    </x-table.td>
+                                    <x-table.td>
+                                        <a href="{{route('courses.show', [$course])}}"
+                                           class="text-indigo-600 hover:text-indigo-900">
+                                            {{$course->name}}
+                                        </a>
+                                    </x-table.td>
+                                    <x-table.td>
+                                        {{$course->description}}
+                                    </x-table.td>
+                                    @can('lecturer')
+                                    <x-table.td>
+                                        <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
+                                    </x-table.td>
+                                    <x-table.td>
                                         <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
-                                </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
+                                    </x-table.td>
+                                    <x-table.td>
                                         <a href="{{route('courses.generateMark',$course->id)}}"><strong>Generate marks</strong></a>
-                                </td>
-                                @endcan('lecturer')
-                            </tr>
+                                    </x-table.td>
+                                    @endcan('lecturer')
+                                </x-table.tr>
                         @endforeach
-                        </tbody>
-                    </table>
-
-
+                        </x-table.tbody>
+                    </x-table.table>
             </div>
         </div>
     </div>
