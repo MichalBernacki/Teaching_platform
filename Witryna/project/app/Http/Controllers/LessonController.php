@@ -18,6 +18,7 @@ class LessonController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('can:enter-course,course');
     }
     public function index(Course $course)
     {
