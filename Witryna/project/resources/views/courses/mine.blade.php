@@ -5,49 +5,73 @@
         </h2>
     </x-slot>
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <h1>
-            Courses
-        </h1>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <h1 class="text-lg font-semibold m-4">Courses for {{$user->name}}</h1>
+                @can('lecturer')
+                    <div class="flex items-center justify-start mt-4 px-4 pb-5">
+                        <form method="get"  action="{{route('courses.create')}}">
+                            <x-button class="ml-4">
+                                {{ __('Create course') }}
+                            </x-button>
+                        </form>
+                    </div>
+                @endcan('lecturer')
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col"
+                                class="px-6 py-3 w-1 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <h1>{{$user->name}} courses:</h1> <br>
-            <table>
-                @foreach ($courses as $key=>$course)
-                    <tr>
-                        <td>
-                            {{$key+1}}
-                        </td>
-                        <td>
-                            {{$course->name}}
-                        </td>
-                        <td>
-                            {{$course->description}}
-                        </td>
-                        <td>
-                            <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
-                        </td>
-                        <td>
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Course name
+                            </th>
                             @can('lecturer')
-                                <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            </th>
                             @endcan('lecturer')
-                        </td>
-                        <td>
-                            <a href="{{route('courses.generateMark',$course->id)}}"><strong>Generate marks</strong></a>
-                        </td>
-                    </tr>
-                @endforeach
-            </table>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($courses as $key=>$course)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{$key+1}}
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="{{route('courses.show', [$course])}}"
+                                       class="text-indigo-600 hover:text-indigo-900">
+                                        {{$course->name}}
+                                    </a>
+                                </td>
+                                @can('lecturer')
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                        <a href="{{route('courses.generateMark',$course->id)}}"><strong>Generate marks</strong></a>
+                                </td>
+                                @endcan('lecturer')
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
 
-            @can('lecturer')
-                 <div class="flex items-center justify-start mt-4 px-4 pb-5">
-                    <form method="get"  action="{{route('courses.create')}}">
-                        <x-button class="ml-4">
-                             {{ __('Create course') }}
-                        </x-button>
-                    </form>
-                   </div>
-            @endcan('lecturer')
+
+            </div>
         </div>
     </div>
 
