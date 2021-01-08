@@ -19,6 +19,20 @@ $I->see('Courses list');
 $I->click('My courses');
 $I->amOnPage('/courses/mine');
 $I->see('Lecturer Lecturer courses:');
+
 $I->see('Course course');
 $I->see('Edit course');
+
+$courseId = $I->grabFromDatabase('courses', 'id', ['name'=>'Course']);
+$I->amOnPage('/courses/' . $courseId . '/edit');
+
+$I->fillField('name', 'Course 2');
+$I->fillField('description', 'Description 2');
+$I->click('Update');
+
+$I->amOnPage('/courses');
+$I->click('My courses');
+
+$I->see('Course 2');
+$I->see('Description 2');
 

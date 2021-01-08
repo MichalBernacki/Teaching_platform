@@ -24,6 +24,6 @@ $I->dontSee('Edit course');
 
 $I->click('Course');
 
-$courseId = $I->seeInDatabase('courses', ['name'=>'Course']);
+$courseId = $I->grabFromDatabase('courses', 'id', ['name'=>'Course']);
 $I->amOnPage('/courses/'.$courseId);
 
