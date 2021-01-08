@@ -1,7 +1,9 @@
 <?php
 
 namespace App\Providers;
-
+use App\Models\User;
+use App\Models\CourseUser;
+use App\Models\Course;
 use App\Models\Role;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
@@ -55,6 +57,14 @@ class AuthServiceProvider extends ServiceProvider
             $lecturer_id = Role::where('name',"Lecturer")->get()[0]->id;
             $dean_id = Role::where('name',"Dean's office employee")->get()[0]->id;
             if($user->role_id == $lecturer_id || $user->role_id==$dean_id)
+                return true;
+            return false;
+        });
+
+        Gate::define('enter-course', function($user, Course $course)
+        {
+            $matchThese = ['user_id'=>$user->id,'course_id'=>$course->id];
+            if( ($user->id == $course->lecturer_id) || CourseUser::where($matchThese)->exists())
                 return true;
             return false;
         });

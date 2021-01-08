@@ -43,7 +43,7 @@
                                 Description
                             </th>
                             <th scope="col" class="relative px-6 py-3">
-                                <span class="sr-only">Details</span>
+                                <span class="sr-only">Enter</span>
                             </th>
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Join course</span>
@@ -59,11 +59,17 @@
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="text-sm text-gray-900">{{ $course->description }}</div>
                                 </td>
+                                @can('enter-course',$course)
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{route('courses.lessons.index', $course)}}"
                                        class="text-indigo-600 hover:text-indigo-900">Details</a>
                                 </td>
-
+                                @endcan
+                                @cannot('enter-course',$course)
+                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                        Details
+                                    </td>
+                                @endcan
                                 <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                     <a href="{{route('courses.join', $course)}}"
                                        class="text-indigo-600 hover:text-indigo-900">Join to course</a>

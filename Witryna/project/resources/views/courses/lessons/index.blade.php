@@ -4,18 +4,19 @@
             {{ __('Lessons') }}
         </h2>
     </x-slot>
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <h2 class="text-lg font-semibold m-4">{{$course->name}}</h2>
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <div class="flex mb-4">
-            <div class="flex-1">
-                Course
-            </div>
-            <div class="flex-1">
-                {{$course->name}}</div>
-            <div class="flex-1">
-                {{$course->description}}
+                <div class="flex items-center justify-start mt-4 px-4 pb-5">
+                    <div class="flex-1">
+                        {{$course->description}}
+                    </div>
+                </div>
             </div>
         </div>
+    </div>
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
@@ -34,12 +35,14 @@
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Join!</th>
+                    @can('lecturer')
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Edit!</th>
                     <th scope="col"
                         class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Delete!</th>
+                    @endcan
                 </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
