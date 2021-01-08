@@ -20,7 +20,7 @@
                         <td>{{$usr->email}}</td>
                         <td><strong>{{$usr->pivot->confirmed?'confirmed':'unconfirmed'}}</strong></td>
                         @if(!$usr->pivot->confirmed)
-                            <a href="confirm/{{$usr->id}}">Confirm</a>
+                            <a href="{{route('courses.confirm',[$course->id,$usr->id])}}">Confirm</a>
                         @endif
                     </li>
                 @endforeach
