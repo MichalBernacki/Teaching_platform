@@ -19,6 +19,11 @@ $I->see('Courses list');
 $I->click('My courses');
 $I->amOnPage('/courses/mine');
 $I->see('Student Student courses:');
-$I->see('Course course');
+$I->see('Course');
 $I->dontSee('Edit course');
+
+$I->click('Course');
+
+$courseId = $I->seeInDatabase('courses', ['name'=>'Course']);
+$I->amOnPage('/courses/'.$courseId);
 

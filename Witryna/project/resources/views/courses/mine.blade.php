@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <h1 class="text-lg font-semibold m-4">Courses for {{$user->name}}</h1>
+                <h1 class="text-lg font-semibold m-4">{{$user->name}} courses:</h1>
                 @can('lecturer')
                     <div class="flex items-center justify-start mt-4 px-4 pb-5">
                         <form method="get"  action="{{route('courses.create')}}">
@@ -28,6 +28,10 @@
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Course name
+                            </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Description
                             </th>
                             @can('lecturer')
                             <th scope="col"
@@ -53,6 +57,9 @@
                                        class="text-indigo-600 hover:text-indigo-900">
                                         {{$course->name}}
                                     </a>
+                                </td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    {{$course->description}}
                                 </td>
                                 @can('lecturer')
                                 <td class="px-6 py-4 whitespace-nowrap">
