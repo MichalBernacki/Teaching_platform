@@ -20,6 +20,7 @@ class CreateLessonMaterialsTable extends Migration
             $table->foreign('lesson_id')->references('id')->on('lessons');
 
             $table->string('path');
+            $table->string('file_name');
 
             $table->timestamps();
         });

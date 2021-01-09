@@ -118,6 +118,7 @@ CREATE TABLE `lesson_materials` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `lesson_id` bigint unsigned NOT NULL,
   `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `file_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -333,7 +334,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$mw6FFYtfsp2TAxiAggxohu6gKinwniya5i0o2ZlqtaVcWSAaWZVVe',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$Bi4viA426jVNRQ29jJGqN.5yCq.qfWxlYIQRidNT7W83lViINVrDK',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$c0w3e2NcTJuaryVH3b.3EuyFlJ6l671zyG9TpxRfTXT/ZNNOQR48a',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$JRVzgg7.lx4QKTrUAkGvaOYqDE.QBGAgis6CCnq2WLQWzXPBfgfwG',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$O3vYMsWq3GxFiZA/QhMC6O75/Q02ZIEhN9M4H8ABFjPKaUMcLk2nW',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$SKMIJSNYRtpiYPXklnV2E.RFtiwnbE0KM22kMLyfxYMeJYo9NH1pK',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$/GNdvhR75kalrCk2MDlWre/0a4let3cGRcu2WJE3XkhefZxuUDcWW',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$Y1ms5EKLkQDn9ZViZRi1H.9ayqz7PNS.jab6DuFQpT41/hkIlXTIO',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$dYfGu24WSb5A3dFmrepWK.fpYy/ieWzyG8oybmw3IOLOqAzJ199QC',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$NpITkvcsQafub3U9Vlce7etIeovxznCg6xAJgPfLMjue7fNSOTsFu',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -346,4 +347,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-09 13:55:43
+-- Dump completed on 2021-01-09 15:13:23

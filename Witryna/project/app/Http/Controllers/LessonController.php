@@ -136,12 +136,13 @@ class LessonController extends Controller
 
         $pathToFile = "/course_".$course->id."/lesson_".$lesson->id;
 
-        $path = $file->storeAs($pathToFile, $fileName);
+        $file->storeAs("public".$pathToFile, $fileName);
 
         $materials = new LessonMaterials();
 
         $materials->lesson_id = $lesson->id;
-        $materials->path = $path;
+        $materials->path = "storage".$pathToFile."/".$fileName;
+        $materials->file_name = $fileName;
         $materials->save();
 
         return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
