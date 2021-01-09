@@ -16,4 +16,8 @@ class Lesson extends Model
     public function lessonTimes(){
         return $this->hasMany(LessonTime::class);
     }
+
+    public function lessonMaterials(){
+        return $this->hasMany(LessonMaterials::class);
+    }
 }

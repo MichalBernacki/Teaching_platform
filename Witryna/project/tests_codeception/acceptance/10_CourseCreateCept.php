@@ -16,7 +16,7 @@ $I->amOnPage('/courses');
 $I->see('Courses list');
 
 $I->click('My courses');
-$I->amOnPage('/courses/mine');
+$I->seeCurrentUrlEquals('/courses/mine');
 $I->see('Lecturer Lecturer courses:');
 $I->see('Course course');
 
@@ -27,10 +27,9 @@ $I->fillField('name', 'Bazy Danych');
 $I->fillField('description', 'kurs podstawowy baz danych');
 
 $I->click('Create');
-$I->amOnPage('/courses');
 
 $I->click('My courses');
-$I->amOnPage('/courses/mine');
+$I->seeCurrentUrlEquals('/courses/mine');
 $I->see('Bazy Danych');
 $I->see('kurs podstawowy baz danych');
 
@@ -51,10 +50,9 @@ $I->see("The name field is required.");
 
 $I->fillField('name', 'KSP');
 $I->click('Create');
-$I->amOnPage('/courses');
 
 $I->click('My courses');
-$I->amOnPage('/courses/mine');
+$I->seeCurrentUrlEquals('/courses/mine');
 $I->see('KSP');
 $I->see('kurs podstawowy komputerowych systemów pomiarowych');
 
