@@ -6,6 +6,7 @@ use App\Models\LessonTime;
 use App\Models\Course;
 use App\Models\LessonMaterials;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -117,6 +118,8 @@ class LessonController extends Controller
      */
     public function destroy(Course $course, Lesson $lesson)
     {
+        $dirToDelete = "/public/course_".$course->id."/lesson_".$lesson->id;
+        Storage::deleteDirectory($dirToDelete);
         $lesson->delete();
         return redirect()->route('courses.lessons.index',$course);
     }
