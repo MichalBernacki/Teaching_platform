@@ -5,7 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class LessonMaterials extends Model
+class LessonMaterial extends Model
 {
     use HasFactory;
+
+    public function lesson(){
+        return $this->belongsTo(Lesson::class);
+    }
 }

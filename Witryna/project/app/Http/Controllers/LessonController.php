@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Lesson;
 use App\Models\LessonTime;
 use App\Models\Course;
-use App\Models\LessonMaterials;
+use App\Models\LessonMaterial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
@@ -185,7 +185,7 @@ class LessonController extends Controller
 
         $file->storeAs("public".$pathToFile, $fileName);
 
-        $materials = new LessonMaterials();
+        $materials = new LessonMaterial();
 
         $materials->lesson_id = $lesson->id;
         $materials->path = "storage".$pathToFile."/".$fileName;

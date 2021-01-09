@@ -18,6 +18,6 @@ class Lesson extends Model
     }
 
     public function lessonMaterials(){
-        return $this->hasMany(LessonMaterials::class);
+        return $this->hasMany(LessonMaterial::class);
     }
 }
