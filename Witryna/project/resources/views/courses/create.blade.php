@@ -5,12 +5,18 @@
         </h2>
     </x-slot>
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <h1>
-            Create new course
-        </h1>
-
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 bg-gradient-to-r from-green-400 to-blue-500">
+        <div class="flex items-stretch">
+            <div class="py-4 w-1/2">
+            </div>
+            <div class="py-4 w-1/4">
+                <img class="object-fill" src="/svg/001-work-space.svg" alt="01">
+            </div>
+            <div class="py-4 w-1/2">
+            </div>
+        </div>
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-black shadow-md overflow-hidden sm:rounded-lg text-white">
+            <h1 class="font-mono"> Create new course </h1>
             <form method="POST" action="{{route('courses.store')}}">
                 @csrf
 
@@ -18,7 +24,7 @@
                     <label class="label" for="name">Type course name</label>
 
                     <div class="control">
-                        <input class="input {{ $errors->has('name') ? 'is-danger' : '' }}" type="text" name="name" id="name" value="{{ old('name') }}">
+                        <input class="input {{ $errors->has('name') ? 'is-danger' : '' }} text-black" type="text" name="name" id="name" value="{{ old('name') }}">
 
                         @if($errors->has('name'))
                             <li class="help is-danger">{{ $errors->first('name') }}</li>
@@ -32,20 +38,24 @@
                     <label class="label" for="description">Describe your  course</label>
 
                     <div class="control">
-                        <input class="input {{ $errors->has('description') ? 'is-danger' : '' }}" type="text" name="description" id="description" value="{{ old('description') }}">
+                        <input class="input {{ $errors->has('description') ? 'is-danger' : '' }} text-black" type="text" name="description" id="description" value="{{ old('description') }}">
 
                         @if($errors->has('description'))
                             <li class="help is-danger">{{ $errors->first('description') }}</li>
                         @endif
                     </div>
                 </div>
-
-                <div class="flex items-center justify-start mt-4 px-4 pb-5">
-                        <x-button class="ml-4">
-                            {{ __('Create') }}
-                        </x-button>
-                </div>
-
+                 <div class="flex items-stretch">
+                        <div class="py-4 w-1/2">
+                        </div>
+                        <div class="py-4 w-1/4">
+                            <x-button>
+                                {{ __('Create') }}
+                            </x-button>
+                        </div>
+                        <div class="py-4 w-1/2">
+                        </div>
+                    </div>
             </form>
         </div>
     </div>

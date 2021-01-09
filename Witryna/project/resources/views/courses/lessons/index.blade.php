@@ -4,7 +4,7 @@
             {{ __('Lessons') }}
         </h2>
     </x-slot>
-    <div class="py-12">
+    <div class="py-12 bg-gradient-to-r from-green-400 to-blue-500">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="text-lg font-semibold m-4">{{$course->name}}</h2>
@@ -87,13 +87,22 @@
                 @endforeach
                 </tbody>
             </table>
-            @can('lecturer')
+    </div>
+    @can('lecturer')
+        <div class="flex items-stretch bg-gradient-to-r from-green-400 to-blue-500">
+            <div class="py-4 w-1/2">
+
+            </div>
+            <div class="py-4 w-1/4">
                 <form method="get"  action="{{route('courses.lessons.create',$course)}}">
-                    <x-button class="ml-4">
+                    <x-button class="ml-8">
                         {{ __('Create new lesson') }}
                     </x-button>
                 </form>
-            @endcan
-    </div>
+            </div>
+            <div class="py-4 w-1/2">
 
+            </div>
+        </div>
+    @endcan
 </x-app-layout>
