@@ -27,4 +27,7 @@ Route::resource('courses', CourseController::class);
 Route::get('/lessons/mine', [LessonController::class, 'mine'])
     ->name('lessons.mine');
 
+Route::get('/courses/{course}/lessons/{lesson}/upload', [LessonController::class, 'upload'])
+    ->name('courses.lessons.upload');
+
 Route::resource('courses.lessons', LessonController::class);

@@ -123,4 +123,10 @@ class LessonController extends Controller
         }
         return view('courses.lessons.mine', ['lessonTimes' => $lessonTimes, 'user' => $user]);
     }
+
+    public function upload(Course $course,Lesson $lesson)
+    {
+
+        return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
+    }
 }
