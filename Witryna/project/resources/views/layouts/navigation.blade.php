@@ -47,6 +47,14 @@
 
                     <x-slot name="content">
                         <!-- Authentication -->
+                        <x-dropdown-link :href="route('courses.mine')">
+                            {{ __('My courses') }}
+                        </x-dropdown-link>
+                        @can('student')
+                        <x-dropdown-link :href="route('lessons.mine')">
+                            {{ __('My lessons') }}
+                        </x-dropdown-link>
+                        @endcan
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
