@@ -96,9 +96,8 @@ class CourseController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        $course = Course::find($id);
         return view('courses.edit')->withCourse($course);
     }
 
@@ -121,9 +120,8 @@ class CourseController extends Controller
         return redirect()->route('courses.index');
     }
 
-    public function listparticipants($id)
+    public function listparticipants(Course $course)
     {
-        $course = Course::find($id);
         return view('courses.listparticipants')->withCourse($course);
     }
 
@@ -139,7 +137,7 @@ class CourseController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
         //
     }

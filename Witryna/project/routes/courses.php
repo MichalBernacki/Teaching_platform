@@ -13,7 +13,7 @@ Route::get('/courses/{course}/generateMark', [CourseController::class, 'generate
 Route::get('/courses/{course}/saveMark/{user}', [CourseController::class, 'saveMark'])
     ->name('courses.saveMark');
 
-Route::get('/courses/{id}/listparticipants', [CourseController::class, 'listparticipants'])
+Route::get('/courses/{course}/listparticipants', [CourseController::class, 'listparticipants'])
     ->name('courses.listparticipants');
 
 Route::get('/courses/{courseid}/confirm/{id}', [CourseController::class, 'confirm'])
