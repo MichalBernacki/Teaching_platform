@@ -199,11 +199,11 @@ class CourseController extends Controller
      }
 
 
-    public function join($id)
+    public function join(Course $course)
     {
-        $course = Course::find($id);
-
         $user = Auth::user();
+
+        if(Gate::allows('student') == false) return redirect()->route('courses.index');
 
         if( CourseUser::where([['user_id', '=',$user->id], ['course_id', '=',$course->id]])->exists() ){
             return view('courses.join.alreadyJoined')->with('course', $course);
@@ -217,7 +217,7 @@ class CourseController extends Controller
             return view('courses.join.successJoined')->with('course', $course);
         }
 
-        return view('courses.index');
+        return redirect()->route('courses.index');
     }
 }
 
