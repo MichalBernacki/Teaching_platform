@@ -42,7 +42,7 @@
                         </tr>
                     @endforeach
                 </table>
-                <input type="submit" value="Aply"/>
+                <input type="submit" value="Apply"/>
             </form>
 
         </div>

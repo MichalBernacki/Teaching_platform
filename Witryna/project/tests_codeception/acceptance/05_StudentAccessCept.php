@@ -24,5 +24,5 @@ $I->see('403');
 $I->amOnPage('/courses');
 $I->see('Courses list ');
 $I->amOnPage('/courses/1/join');
-$I->see('Successfully joined to the course ');
+$I->see('Successfully joined the course ');
 

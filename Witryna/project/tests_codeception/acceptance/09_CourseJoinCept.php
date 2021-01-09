@@ -11,14 +11,14 @@ $I->fillField('password', 'student');
 $I->click('Login');
 $I->seeCurrentUrlEquals('/courses');
 
-$I->click('Join to course');
+$I->click('Join');
 $I->seeCurrentUrlEquals('/courses/1/join');
-$I->see('Successfully joined to the course');
+$I->see('Successfully joined the course');
 
 $I->amOnPage('/courses');
-$I->click('Join to course');
+$I->click('Join');
 $I->seeCurrentUrlEquals('/courses/1/join');
-$I->see('Already joined to this course');
+$I->see('Already joined this course');
 
 
 
