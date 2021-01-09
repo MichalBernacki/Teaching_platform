@@ -8,19 +8,18 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h2 class="text-lg font-semibold m-4">{{$course->name}}</h2>
-                @can('lecturer')
-                    <form method="get"  action="{{route('courses.lessons.create',$course)}}">
-                        <x-button class="ml-4">
-                            {{ __('Create new lesson') }}
-                        </x-button>
-                    </form>
-                @endcan
                 <div class="flex items-center justify-start mt-4 px-4 pb-5">
                     <div class="flex-1">
                         {{$course->description}}
                     </div>
                 </div>
-
+                @can('lecturer')
+                    <form method="get"  action="{{route('courses.lessons.create',$course)}}">
+                        <x-button class="m-4">
+                            {{ __('Create new lesson') }}
+                        </x-button>
+                    </form>
+                @endcan
 
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
