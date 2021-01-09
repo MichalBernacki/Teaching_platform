@@ -7,6 +7,7 @@ use App\Models\Course;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Collection;
 
 class LessonController extends Controller
 {
@@ -124,14 +125,23 @@ class LessonController extends Controller
         if(Gate::allows('lecturer')) abort(404);
 
         $user = Auth::user();
-        $lessonTimes = array();
+        $lessonTimes = new Collection(new LessonTime());
         if (Gate::allows('student')) {
-            foreach($user->lessonTimes()->whereDate('date', '>=', now())
-                        ->orderBy('date')->orderBy('time')->get() as $lessonTime){
-                array_push($lessonTimes, $lessonTime);
+            foreach($user->courses as $course){
+                foreach($course->lessons as $lesson){
+                    foreach($lesson->lessonTimes()->whereDate('date', '>=', now())->get() as $lessonTime){
+                        $lessonTimes->push($lessonTime);
+                    }
+                }
             }
         }
-        return view('courses.lessons.mine', ['lessonTimes' => $lessonTimes, 'user' => $user]);
+        $sortedTimes = $lessonTimes->sort(function($a, $b) {
+            if($a->date === $b->date) {
+                return $a->time <=> $b->time;
+            }
+            return $a->date <=> $b->date;
+        });
+        return view('courses.lessons.mine', ['lessonTimes' => $sortedTimes, 'user' => $user]);
     }
     public function presence(Course $course,Lesson $lesson)
     {
