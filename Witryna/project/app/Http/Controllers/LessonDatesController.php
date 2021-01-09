@@ -72,9 +72,9 @@ class LessonDatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course, Lesson $lesson, LessonTime $date)
     {
-        //
+        return view('courses.lessons.dates.edit',['course' => $course, 'lesson' => $lesson,'date'=>$date]);
     }
 
     /**
@@ -84,9 +84,16 @@ class LessonDatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Course $course, Lesson $lesson, LessonTime $date)
     {
-        //
+        request()->validate([
+            'date' => 'required',
+            'time' => 'required'
+        ]);
+        $date->date = request('date');
+        $date->time = request('time');
+        $date->update();
+        return redirect()->route('courses.lessons.dates.index',['course' => $course, 'lesson' => $lesson]);
     }
 
     /**
@@ -95,8 +102,9 @@ class LessonDatesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course, Lesson $lesson, LessonTime $date)
     {
-        //
+        $date->delete();
+        return redirect()->route('courses.lessons.dates.index',['course' => $course, 'lesson' => $lesson]);
     }
 }
