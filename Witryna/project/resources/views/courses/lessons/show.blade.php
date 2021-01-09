@@ -46,10 +46,12 @@
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
 
-            @foreach($lesson->lessonMaterials as $materials)
+            @forelse($lesson->lessonMaterials as $materials)
                 <a href='{{ asset($materials->path) }}'>{{ $materials->file_name }}</a>
                 <br/>
-            @endforeach
+            @empty
+                    <p>Lack of lesson materials</p>
+            @endforelse
 
         </div>
 

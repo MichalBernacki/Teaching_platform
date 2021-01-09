@@ -145,7 +145,11 @@ class LessonController extends Controller
         $lessonTimes=$lesson->lessonTimes->first();
         foreach($lesson->course->users as $user)
         {
-            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>request('presence'.$user->id),'pluses'=>request('pluses'.$user->id)]);
+            $pluses = 0;
+            if(request('presence'.$user->id) == 1 ){
+                $pluses = request('presence'.$user->id);
+            }
+            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>$pluses,'pluses'=>request('pluses'.$user->id)]);
         }
         return redirect()->route('courses.lessons.show',[$course,$lesson]);
     }
