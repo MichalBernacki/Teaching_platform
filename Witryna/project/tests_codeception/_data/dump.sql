@@ -334,7 +334,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$Z66cpCeR9./OmGJHCLTynejzO23.qNurC6JsrT/jsJWyyTW/f6FNK',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$jMZWBKIkLXw3KQeXho7UwOvQ5g7MgfSks4CzfJCKYXc2DZZ0YTVye',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$TWvQ4VWuhz7emrbWf25D4.Bf5jXDVU8co7ZWg4KTa6tZsUfSIebdK',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$18aYFrkyRPUoZpRGfy9NeeoGekacz2x9w6G9J0CMfP1d1mPpsuGXK',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$WZ81crX.sj0iDkk21pp91.N15afamA6NbRm2qY0cknwfArBxH89MC',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$7RaCFe/8G/KlnxHouL2CyuydL2.oe5cGj584W0wvSE6r5YOaE8Q92',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$ePKW5Jls/oZW1I5Pb6WfHeq8iu9Co63MQBkndus5D3i/HJqKGsoV2',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$PT.Aij15RMzZXGmDsorU3eP1kkEb8nvuJkhQYIksg.Eoyh7djaGLC',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$DxE7bKJi5nLnY8MorKT9.uRCXNrO/4kqxzD02QpZp0ddd/UyPF.Bu',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$u126AuqvrSaob0/iVnSaqeDVPWnA4afjJrUfnJMI9.viXaHtfJQe6',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -347,4 +347,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-09 19:30:30
+-- Dump completed on 2021-01-09 20:48:18

@@ -88,6 +88,9 @@
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <a href="{{route('courses.lessons.edit',[$course,$lesson])}}"><strong>Edit</strong></a>
                             </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <a href="{{route('courses.lessons.dates.index',[$course,$lesson])}}"><strong>Add/edit dates</strong></a>
+                            </td>
                             <td>
                             <form method="post" action="{{ route('courses.lessons.destroy',[$course,$lesson]) }}">
                                 @csrf
