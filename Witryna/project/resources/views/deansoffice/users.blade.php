@@ -12,15 +12,13 @@
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <table>
-                @foreach ($users as $user)
-                    @if ($user->role_id==1)
+                @foreach ($users->where('role_id', '1') as $user)
                         <tr>
                             <th>Name: {{ $user->name }}</th>
                             <th>Email: {{ $user->email }}</th>
                             <th>Role:{{$roles[$user->role_id-1]->name}}</th>
                             <th><a href="/users/{{$user->id}}/edit">Change Role</a></th>
                         </tr>
-                    @endif
                 @endforeach
             </table>
         </div>
@@ -29,17 +27,16 @@
         </div>
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <table>
-                @foreach ($users as $user)
-                    @if ($user->role_id!=1)
+                @foreach ($users->where('role_id','!=', '1') as $user)
                         <tr>
                             <th>Name: {{ $user->name }}</th>
                             <th>Email: {{ $user->email }}</th>
                             <th>Role:{{$roles[$user->role_id-1]->name}}</th>
                             <th><a href="/users/{{$user->id}}/edit">Change Role</a></th>
                         </tr>
-                    @endif
                 @endforeach
             </table>
+            {{$users->links()}}
         </div>
     </div>
 
