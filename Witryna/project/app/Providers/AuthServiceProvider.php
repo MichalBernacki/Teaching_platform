@@ -68,5 +68,13 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             return false;
         });
+
+        Gate::define('give-plusesandpresence', function($user, Course $course)
+        {
+            if( ($user->id == $course->lecturer_id))
+                return true;
+            return false;
+        });
+
     }
 }

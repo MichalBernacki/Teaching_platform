@@ -29,6 +29,6 @@ Route::get('/lessons/mine', [LessonController::class, 'mine'])
 
 Route::resource('courses.lessons', LessonController::class);
 
-Route::get('/courses/{course}/lessons/{lesson}/presence', [LessonController::class, 'presence'])
+Route::get('/courses/{course}/lessons/{lesson}/presence', [LessonController::class, 'presence'])->middleware('can:give-plusesandpresence,course')
     ->name('courses.lessons.presence');
 Route::post('/courses/{course}lessons/{lesson}/save',[LessonController::class, 'save'])->name('courses.lessons.save');;
