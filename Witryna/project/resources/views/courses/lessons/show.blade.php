@@ -43,6 +43,14 @@
 
     @endcan('lecturer')
 
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+
+            @foreach($lesson->lessonMaterials as $materials)
+                <p>{{$materials->path}}</p>
+            @endforeach
+
+        </div>
+
     </div>
 
 </x-app-layout>
