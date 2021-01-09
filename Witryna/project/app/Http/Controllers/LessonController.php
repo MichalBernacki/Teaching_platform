@@ -37,7 +37,10 @@ class LessonController extends Controller
      */
     public function create(Course $course)
     {
-        return view('courses.lessons.create')->withCourse($course);
+        if(Gate::allows('course-owner',$course)) {
+            return view('courses.lessons.create')->withCourse($course);
+        }
+        return redirect()->route('courses.lessons.index', ['course' => $course]);
     }
 
     /**
@@ -86,7 +89,10 @@ class LessonController extends Controller
      */
     public function edit(Course $course, Lesson $lesson)
     {
-        return view('courses.lessons.edit')->withLesson($lesson)->withCourse($course);
+        if(Gate::allows('course-owner',$course)) {
+            return view('courses.lessons.edit')->withLesson($lesson)->withCourse($course);
+        }
+        return redirect()->route('courses.lessons.index', ['course' => $course]);
     }
 
     /**

@@ -68,5 +68,12 @@ class AuthServiceProvider extends ServiceProvider
                 return true;
             return false;
         });
+
+        Gate::define('course-owner', function($user, Course $course)
+        {
+            if( ($user->id == $course->lecturer_id))
+                return true;
+            return false;
+        });
     }
 }

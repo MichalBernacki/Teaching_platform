@@ -5,45 +5,55 @@
         </h2>
     </x-slot>
 
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-        <h1>
-            Lesson creating
-        </h1>
+    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 bg-gradient-to-r from-green-400 to-blue-500">
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="flex items-stretch">
+            <div class="py-4 w-1/2">
+            </div>
+            <div class="py-4 w-1/4">
+                <img class="object-fill" src="/svg/001-work-space.svg" alt="01">
+            </div>
+            <div class="py-4 w-1/2">
+            </div>
+        </div>
+        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-black shadow-md overflow-hidden sm:rounded-lg text-white">
+            <h1 class="font-mono">
+                Lesson creating
+            </h1>
             <form method="POST" action="{{route('courses.lessons.store',$course)}}">
                 @csrf
                 <label for="title">Title</label>
                 <br/>
-                <input class="input {{$errors->has('title') ? 'is-danger' : ''}}" type="text" name="title">
+                <input class="input {{$errors->has('title') ? 'is-danger' : ''}} text-black" type="text" name="title">
                 @if ($errors->has('title'))
                     <li class="help is-danger">{{$errors->first('title')}}</li>
                     @endif
                     <br/>
                     <label for="description">Description:</label>
                     <br/>
-                    <input class="input {{$errors->has('description') ? 'is-danger' : ''}}" type="text" name="description" >
+                    <input class="input {{$errors->has('description') ? 'is-danger' : ''}} text-black" type="text" name="description" >
                     @if($errors->has('description'))
                         <li class="help is-danger">{{$errors->first('description')}}</li>
                         @endif
                         <br/>
                             <label>Date of lesson:</label>
                             <br/>
-                            <input class="input" {{$errors->has('date') ? 'is-danger' : ''}} type="date" name="date" >
+                            <input class="input {{$errors->has('date') ? 'is-danger' : ''}} text-black" type="date" name="date" >
                             @if($errors->has('date'))
                                 <li class="help is-danger">{{$errors->first('date')}}</li>
                             @endif
                         <br/>
                             <label>Time of lesson:</label>
                             <br/>
-                            <input class="input" {{$errors->has('time') ? 'is-danger' : ''}} type="time" name="time" >
+                            <input class="input {{$errors->has('time') ? 'is-danger' : ''}} text-black" type="time" name="time" >
                             @if($errors->has('time'))
                                 <li class="help is-danger">{{$errors->first('time')}}</li>
                             @endif
                             <br/>
-                        <x-button>
-                            {{ __('Create') }}
-                        </x-button>
+                                <x-button>
+                                    {{ __('Create') }}
+                                </x-button>
+
             </form>
         </div>
     </div>
