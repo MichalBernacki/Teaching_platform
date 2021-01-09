@@ -13,7 +13,7 @@ $I->seeInDatabase("users", ["name" => "John Doe","role_id"=>"1"]);
 
 $I->click('Change Role');
 $I->seeCurrentUrlEquals('/users/1/edit');
-$I->see("Current Role:None");
+
 
 $I->click('Change');
 
