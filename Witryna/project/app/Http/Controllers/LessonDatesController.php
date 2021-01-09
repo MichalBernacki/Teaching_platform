@@ -22,10 +22,7 @@ class LessonDatesController extends Controller
     }
     public function index(Course $course, Lesson $lesson)
     {
-        if(Auth::check()) {
-            return view('courses.lessons.dates.index')->withLesson($lesson)->withCourse($course);
-        }
-        return view('auth.login');
+            return view('courses.lessons.dates.index',['course' => $course, 'lesson' => $lesson]);
     }
 
     /**
@@ -35,7 +32,7 @@ class LessonDatesController extends Controller
      */
     public function create(Course $course, Lesson $lesson)
     {
-        return view('courses.lessons.dates.create')->withCourse($course)->withLesson($lesson);
+        return view('courses.lessons.dates.create',['course' => $course, 'lesson' => $lesson]);
     }
 
     /**
@@ -44,9 +41,18 @@ class LessonDatesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Course $course, Lesson $lesson)
     {
-        //
+        request()->validate([
+            'date' => 'required',
+            'time' => 'required'
+        ]);
+        $lessonTime = new LessonTime();
+        $lessonTime->date = request('date');
+        $lessonTime->time = request('time');
+        $lessonTime->lesson_id = $lesson->id;
+        $lessonTime->save();
+        return redirect()->route('courses.lessons.dates.index',['course' => $course, 'lesson' => $lesson]);
     }
 
     /**

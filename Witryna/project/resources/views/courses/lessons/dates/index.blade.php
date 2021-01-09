@@ -16,7 +16,6 @@
                 </div>
                     <div class="flex items-stretch bg-gradient-to-r from-green-400 to-blue-500">
                         <div class="py-4 w-1/2">
-
                         </div>
                         <div class="py-4 w-1/4">
                             <form method="get"  action="{{route('courses.lessons.dates.create',[$course,$lesson])}}">
@@ -26,7 +25,6 @@
                             </form>
                         </div>
                         <div class="py-4 w-1/2">
-
                         </div>
                     </div>
 
