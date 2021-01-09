@@ -53,7 +53,7 @@
                                     {{$key+1}}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{route('courses.show', [$course])}}"
+                                    <a href="{{route('courses.lessons.index', [$course])}}"
                                        class="text-indigo-600 hover:text-indigo-900">
                                         {{$course->name}}
                                     </a>
