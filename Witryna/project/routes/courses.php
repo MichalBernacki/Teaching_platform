@@ -13,13 +13,13 @@ Route::get('/courses/{course}/generateMark', [CourseController::class, 'generate
 Route::get('/courses/{course}/saveMark/{user}', [CourseController::class, 'saveMark'])
     ->name('courses.saveMark');
 
-Route::get('/courses/{id}/listparticipants', [CourseController::class, 'listparticipants'])
+Route::get('/courses/{course}/listparticipants', [CourseController::class, 'listparticipants'])
     ->name('courses.listparticipants');
 
 Route::get('/courses/{courseid}/confirm/{id}', [CourseController::class, 'confirm'])
     ->name('courses.confirm');
 
-Route::get('/courses/{id}/join', [CourseController::class, 'join'])
+Route::get('/courses/{course}/join', [CourseController::class, 'join'])
     ->name('courses.join');
 
 Route::resource('courses', CourseController::class);

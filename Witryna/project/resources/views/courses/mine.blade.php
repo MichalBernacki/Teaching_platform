@@ -44,7 +44,7 @@
                                     {{$key+1}}
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{route('courses.show', [$course])}}"
+                                    <a href="{{route('courses.lessons.index', [$course])}}"
                                        class="text-indigo-600 hover:text-indigo-900">
                                         {{$course->name}}
                                     </a>
@@ -54,21 +54,19 @@
                                 </td>
                                 @can('lecturer')
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                    <a href="{{route('courses.listparticipants',$course->id)}}"><strong>List of students</strong></a>
+                                    <a href="{{route('courses.listparticipants',$course)}}"><strong>List of students</strong></a>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="{{route('courses.edit',$course->id)}}"><strong>Edit course</strong></a>
+                                        <a href="{{route('courses.edit',$course)}}"><strong>Edit course</strong></a>
                                 </td>
                                 <td class="px-6 py-4 whitespace-nowrap">
-                                        <a href="{{route('courses.generateMark',$course->id)}}"><strong>Generate marks</strong></a>
+                                        <a href="{{route('courses.generateMark',$course)}}"><strong>Generate marks</strong></a>
                                 </td>
                                 @endcan('lecturer')
                             </tr>
                         @endforeach
                         </tbody>
                     </table>
-
-
             </div>
         </div>
     </div>

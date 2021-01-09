@@ -14,9 +14,24 @@
                         {{$course->description}}
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
+                @can('lecturer')
+                    <div class="flex items-stretch bg-gradient-to-r from-green-400 to-blue-500">
+                        <div class="py-4 w-1/2">
+
+                        </div>
+                        <div class="py-4 w-1/4">
+                            <form method="get"  action="{{route('courses.lessons.create',$course)}}">
+                                <x-button class="ml-8">
+                                    {{ __('Create new lesson') }}
+                                </x-button>
+                            </form>
+                        </div>
+                        <div class="py-4 w-1/2">
+
+                        </div>
+                    </div>
+                @endcan
+
             <table class="min-w-full divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                 <tr>
@@ -87,22 +102,8 @@
                 @endforeach
                 </tbody>
             </table>
-    </div>
-    @can('lecturer')
-        <div class="flex items-stretch bg-gradient-to-r from-green-400 to-blue-500">
-            <div class="py-4 w-1/2">
-
-            </div>
-            <div class="py-4 w-1/4">
-                <form method="get"  action="{{route('courses.lessons.create',$course)}}">
-                    <x-button class="ml-8">
-                        {{ __('Create new lesson') }}
-                    </x-button>
-                </form>
-            </div>
-            <div class="py-4 w-1/2">
-
             </div>
         </div>
-    @endcan
+    </div>
+
 </x-app-layout>

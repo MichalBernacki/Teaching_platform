@@ -96,9 +96,8 @@ class CourseController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Course $course)
     {
-        $course = Course::find($id);
         return view('courses.edit')->withCourse($course);
     }
 
@@ -121,16 +120,15 @@ class CourseController extends Controller
         return redirect()->route('courses.index');
     }
 
-    public function listparticipants($id)
+    public function listparticipants(Course $course)
     {
-        $course = Course::find($id);
         return view('courses.listparticipants')->withCourse($course);
     }
 
     public function confirm($courseid, $id)
     {
         CourseUser::where(['course_id' => $courseid, 'user_id' => $id])->update(['confirmed' => 1]);
-        return redirect()->route('courses.listparticipants', ['id' => $courseid]);
+        return redirect()->route('courses.listparticipants', ['course' => $courseid]);
     }
 
     /**
@@ -139,7 +137,7 @@ class CourseController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Course $course)
     {
         //
     }
@@ -203,11 +201,11 @@ class CourseController extends Controller
      }
 
 
-    public function join($id)
+    public function join(Course $course)
     {
-        $course = Course::find($id);
-
         $user = Auth::user();
+
+        if(Gate::allows('student') == false) return redirect()->route('courses.index');
 
         if( CourseUser::where([['user_id', '=',$user->id], ['course_id', '=',$course->id]])->exists() ){
             return view('courses.join.alreadyJoined')->with('course', $course);
@@ -221,6 +219,6 @@ class CourseController extends Controller
             return view('courses.join.successJoined')->with('course', $course);
         }
 
-        return view('courses.index');
+        return redirect()->route('courses.index');
     }
 }

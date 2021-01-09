@@ -45,7 +45,8 @@
                         <br/>
                             <label>Time of lesson:</label>
                             <br/>
-                            <input class="input {{$errors->has('time') ? 'is-danger' : ''}} text-black" type="time" name="time" >
+                            <input class="input {{$errors->has('time') ? 'is-danger' : ''}} text-black" type="time" name="time"
+                                   value="{{now()->hour}}:{{now()->minute}}">
                             @if($errors->has('time'))
                                 <li class="help is-danger">{{$errors->first('time')}}</li>
                             @endif

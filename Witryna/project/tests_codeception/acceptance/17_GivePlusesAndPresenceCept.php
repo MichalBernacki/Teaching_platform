@@ -19,7 +19,7 @@ $I->seeCurrentUrlEquals('/courses/1/lessons/1/presence');
 $I->selectOption("pluses1","5");
 $I->selectOption("presence1","0");
 
-$I->click("Aply");
+$I->click("Apply");
 
 $I->see("Presence and pluses");
 $I->seeCurrentUrlEquals('/courses/1/lessons/1');
