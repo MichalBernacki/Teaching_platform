@@ -9,6 +9,21 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <h1 class="text-lg font-semibold m-4">{{$user->name}} courses:</h1>
+                @can('lecturer')
+                    <div class="flex items-stretch bg-gradient-to-r from-green-400 to-blue-500">
+                        <div class="py-4 w-1/2">
+                        </div>
+                        <div class="py-4 w-1/4">
+                            <form method="get"  action="{{route('courses.create')}}">
+                                <x-button class="ml-4">
+                                    {{ __('Create course') }}
+                                </x-button>
+                            </form>
+                        </div>
+                        <div class="py-4 w-1/2">
+                        </div>
+                    </div>
+                @endcan('lecturer')
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead class="bg-gray-50">
                         <tr>
@@ -70,19 +85,5 @@
             </div>
         </div>
     </div>
-    @can('lecturer')
-        <div class="flex items-stretch">
-            <div class="py-4 w-1/2">
-            </div>
-            <div class="py-4 w-1/4">
-                <form method="get"  action="{{route('courses.create')}}">
-                    <x-button class="ml-4">
-                        {{ __('Create course') }}
-                    </x-button>
-                </form>
-            </div>
-            <div class="py-4 w-1/2">
-            </div>
-        </div>
-    @endcan('lecturer')
+
 </x-app-layout>
