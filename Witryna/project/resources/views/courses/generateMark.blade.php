@@ -15,8 +15,10 @@
                 <p> {{$user->name}}</p>
                 <p>Pluses from all lessons: {{$pluses[$key]}}</p>
                 <p>Presence from all lessons: {{$presence[$key]}}</p>
-                <p>Average pluses per lesson: {{$averagepluses[$key]}}</p>
+                <br/>
                 <p>Presence: {{$percentagepresence[$key]}}%</p>
+                <p>Average pluses per lesson: {{$averagepluses[$key]}}</p>
+
                 <br/>
 
                 <form method="GET" action="{{ route('courses.saveMark',  ['course' => $course, 'user' => $user]) }}">
