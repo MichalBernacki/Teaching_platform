@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Lesson;
 use App\Models\LessonTime;
 use App\Models\Course;
+use App\Models\LessonMaterials;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -133,12 +134,16 @@ class LessonController extends Controller
         $file = request('file');
         $fileName = request()->file('file')->getClientOriginalName();
 
-        $pathToFile = "/course_".$course->id."/lesson_".$lesson->id."/";
+        $pathToFile = "/course_".$course->id."/lesson_".$lesson->id;
 
         $path = $file->storeAs($pathToFile, $fileName);
 
-        print($path);
+        $materials = new LessonMaterials();
 
-        //return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
+        $materials->lesson_id = $lesson->id;
+        $materials->path = $path;
+        $materials->save();
+
+        return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
     }
 }
