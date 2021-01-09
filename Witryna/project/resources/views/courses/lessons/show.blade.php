@@ -22,7 +22,7 @@
     @can('lecturer')
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-            <form method="post" action="{{route('courses.lessons.upload',  ['course' => $course, 'lesson' => $lesson])}}"  role="form" enctype="multipart/form-data">
+            <form method="POST" action="{{route('courses.lessons.upload',  ['course' => $course, 'lesson' => $lesson])}}"  role="form" enctype="multipart/form-data">
                 @csrf
                 <div class="field">
                     <label class="label" for="file">Upload file here</label>

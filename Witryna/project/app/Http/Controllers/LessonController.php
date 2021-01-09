@@ -126,7 +126,19 @@ class LessonController extends Controller
 
     public function upload(Course $course,Lesson $lesson)
     {
+        request()->validate([
+            'file' => 'required'
+        ]);
 
-        return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
+        $file = request('file');
+        $fileName = request()->file('file')->getClientOriginalName();
+
+        $pathToFile = "/course_".$course->id."/lesson_".$lesson->id."/";
+
+        $path = $file->storeAs($pathToFile, $fileName);
+
+        print($path);
+
+        //return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
     }
 }
