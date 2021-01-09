@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\LessonDatesController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/courses/mine', [CourseController::class, 'mine'])
@@ -35,3 +36,5 @@ Route::resource('courses.lessons', LessonController::class);
 Route::get('/courses/{course}/lessons/{lesson}/presence', [LessonController::class, 'presence'])->middleware('can:give-plusesandpresence,course')
     ->name('courses.lessons.presence');
 Route::post('/courses/{course}lessons/{lesson}/save',[LessonController::class, 'save'])->name('courses.lessons.save');;
+
+Route::resource('courses.lessons.dates', LessonDatesController::class);
