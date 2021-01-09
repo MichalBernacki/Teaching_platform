@@ -6,6 +6,7 @@ use App\Models\LessonTime;
 use App\Models\Course;
 use App\Models\LessonMaterials;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
@@ -117,6 +118,8 @@ class LessonController extends Controller
      */
     public function destroy(Course $course, Lesson $lesson)
     {
+        $dirToDelete = "/public/course_".$course->id."/lesson_".$lesson->id;
+        Storage::deleteDirectory($dirToDelete);
         $lesson->delete();
         return redirect()->route('courses.lessons.index',$course);
     }
@@ -142,7 +145,11 @@ class LessonController extends Controller
         $lessonTimes=$lesson->lessonTimes->first();
         foreach($lesson->course->users as $user)
         {
-            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>request('presence'.$user->id),'pluses'=>request('pluses'.$user->id)]);
+            $pluses = 0;
+            if(request('presence'.$user->id) == 1 ){
+                $pluses = request('presence'.$user->id);
+            }
+            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>$pluses,'pluses'=>request('pluses'.$user->id)]);
         }
         return redirect()->route('courses.lessons.show',[$course,$lesson]);
     }

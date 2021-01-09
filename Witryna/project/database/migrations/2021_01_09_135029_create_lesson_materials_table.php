@@ -17,7 +17,7 @@ class CreateLessonMaterialsTable extends Migration
             $table->id();
 
             $table->unsignedBigInteger('lesson_id');
-            $table->foreign('lesson_id')->references('id')->on('lessons');
+            $table->foreign('lesson_id')->references('id')->on('lessons')->onDelete('cascade');;
 
             $table->string('path');
             $table->string('file_name');

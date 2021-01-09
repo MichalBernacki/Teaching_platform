@@ -224,20 +224,3 @@ class CourseController extends Controller
         return view('courses.index');
     }
 }
-
-/*
-   public function generateArraysForMarks(&$classActivity, &$averageValue, $givenOption, $user)
-   {
-       $toRemove = array('[',']');
-
-       $getValue= \DB::table('lesson_users')->where('user_id',$user->id)->pluck($givenOption);
-
-       $newValue = str_replace($toRemove, "", $getValue);
-
-       array_push($classActivity , $newValue);
-
-       $parts = explode(',',$newValue);
-       array_push($averageValue , array_sum($parts)/count($parts));
-
-   }
-   */

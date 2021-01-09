@@ -123,7 +123,7 @@ CREATE TABLE `lesson_materials` (
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `lesson_materials_lesson_id_foreign` (`lesson_id`),
-  CONSTRAINT `lesson_materials_lesson_id_foreign` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`id`)
+  CONSTRAINT `lesson_materials_lesson_id_foreign` FOREIGN KEY (`lesson_id`) REFERENCES `lessons` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -165,7 +165,7 @@ CREATE TABLE `lesson_time_user` (
 
 LOCK TABLES `lesson_time_user` WRITE;
 /*!40000 ALTER TABLE `lesson_time_user` DISABLE KEYS */;
-INSERT INTO `lesson_time_user` VALUES (1,1,1,1,4,NULL,NULL),(2,2,1,1,2,NULL,NULL),(3,3,1,0,24,NULL,NULL),(4,1,4,1,7,NULL,NULL),(5,3,4,1,1,NULL,NULL);
+INSERT INTO `lesson_time_user` VALUES (1,1,1,1,4,NULL,NULL),(2,2,1,1,2,NULL,NULL),(3,3,1,0,0,NULL,NULL),(4,1,4,1,7,NULL,NULL),(5,3,4,1,1,NULL,NULL);
 /*!40000 ALTER TABLE `lesson_time_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,7 +334,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$GhOVb4bpkthix..aWwVM5eFh6AOE8eQxrT8TShuuG1c6at/BmXDki',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$uzgn0BI17/f3Fh4z3Ozll.yeLX3F4esIWkZ6d038ysh8ib20IcTeS',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$LNDCxoMroIbfO3yFF8tikOjaT1PwBFY0mBs.ZKUaOfdwJWvFWiWY2',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$KHRjjP4EftRp7le1iNjX3ucWWMzsxOSibYyFnitBeNg7vQSHIowpG',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$n.KpxL2XclV1avOMyXXLK.vUax6CFsrcqtu0M66Zp4pP5uKLB9X5a',3,NULL,NULL,NULL);
+INSERT INTO `users` VALUES (1,'John Doe','john.doe@gmail.com',NULL,'$2y$10$xt5SL2iYErC4WAXlJ1vk3eOO/LG4MwNChSWMQuzrMo1t3CII/pW3O',1,NULL,NULL,NULL),(2,'Pablo Black','pb@g.com',NULL,'$2y$10$jzFDqZR6t2VJ4K2IJHOb6.RxVCEhYWRaTJuo9dJgVZ6XgCgaFrGuq',3,NULL,NULL,NULL),(3,'Dean Dean','dean@dean.com',NULL,'$2y$10$sc5qzdsjn8U02YomawLoqeu4v9duGF22iWY2VeC2idEmehmMLTPbK',4,NULL,NULL,NULL),(4,'Student Student','student@student.com',NULL,'$2y$10$QWDORAFOKRPDfsvZoJCcTelCjmULFJ3eLxqeqi0RJYsurqU8cnndW',2,NULL,NULL,NULL),(5,'Lecturer Lecturer','lecturer@lecturer.com',NULL,'$2y$10$3Axk5YfYXijo/SiwG5gP4.BhU8l87ntafZkN7ToRRUOhCdl5pCHs6',3,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -347,4 +347,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-01-09 17:07:47
+-- Dump completed on 2021-01-09 18:03:14

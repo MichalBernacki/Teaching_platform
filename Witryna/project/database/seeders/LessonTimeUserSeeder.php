@@ -32,7 +32,7 @@ class LessonTimeUserSeeder extends Seeder
             'lesson_time_id' => 3,
             'user_id' => 1,
             'presence' => 0,
-            'pluses' => 24
+            'pluses' => 0
         ]);
         DB::table('lesson_time_user')->insert([
             'id' => 4,

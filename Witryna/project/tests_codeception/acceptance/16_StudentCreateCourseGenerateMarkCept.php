@@ -20,6 +20,6 @@ $I->seeCurrentUrlEquals('/courses/mine');
 
 $I->dontSee('Create course');
 
-$I->dontSee('Generate makrs');
+$I->dontSee('Generate marks');
 
 
