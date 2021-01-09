@@ -128,7 +128,7 @@ class CourseController extends Controller
     public function confirm($courseid, $id)
     {
         CourseUser::where(['course_id' => $courseid, 'user_id' => $id])->update(['confirmed' => 1]);
-        return redirect()->route('courses.listparticipants', ['id' => $courseid]);
+        return redirect()->route('courses.listparticipants', ['course' => $courseid]);
     }
 
     /**

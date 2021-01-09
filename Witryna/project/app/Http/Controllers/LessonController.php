@@ -18,7 +18,7 @@ class LessonController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('can:enter-course,course');
+        $this->middleware('can:enter-course,course', ['except'=>['mine']]);
     }
     public function index(Course $course)
     {
@@ -121,6 +121,8 @@ class LessonController extends Controller
 
     public function mine()
     {
+        if(Gate::allows('lecturer')) abort(404);
+
         $user = Auth::user();
         $lessonTimes = array();
         if (Gate::allows('student')) {
