@@ -49,6 +49,7 @@ $I->click('Create');
 $I->see("The name field is required.");
 
 $I->fillField('name', 'KSP');
+$I->fillField('description', 'kurs podstawowy komputerowych systemów pomiarowych');
 $I->click('Create');
 
 $I->click('My courses');
