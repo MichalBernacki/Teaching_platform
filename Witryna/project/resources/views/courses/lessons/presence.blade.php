@@ -4,7 +4,7 @@
         {{ __('Lesson') }}
     </h2>
 </x-slot>
-<div class="py-12">
+<div class="py-12  bg-gradient-to-r from-green-400 to-blue-500">
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <h2 class="text-lg font-semibold m-4">Presence and pluses</h2>
         <form method="post" action="{{route('courses.lessons.save',[$lesson,$course])}}">
