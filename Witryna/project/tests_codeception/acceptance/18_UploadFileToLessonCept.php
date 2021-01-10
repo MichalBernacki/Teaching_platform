@@ -42,7 +42,7 @@ $I->seeInDatabase("lesson_materials", ["file_name" => "unit.suite.yml"]);
 $I->click('Upload file');
 $I->see('The file field is required.');
 
-$I->click('Delete');
+$I->click('Delete file');
 $I->dontSeeInDatabase("lesson_materials", ["file_name" => "unit.suite.yml"]);
 
 $I->attachFile('file', '../acceptance.suite.yml');
