@@ -55,6 +55,9 @@
                             {{ __('My lessons') }}
                         </x-dropdown-link>
                         @endcan
+                        <x-dropdown-link :href="route('password.change')">
+                            {{ __('Change password') }}
+                        </x-dropdown-link>
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
