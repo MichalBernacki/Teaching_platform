@@ -3,6 +3,7 @@
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
 use App\Http\Controllers\LessonDatesController;
+use App\Http\Controllers\LessonMaterialsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/courses/mine', [CourseController::class, 'mine'])
@@ -30,6 +31,9 @@ Route::get('/lessons/mine', [LessonController::class, 'mine'])
 
 Route::post('/courses/{course}/lessons/{lesson}', [LessonController::class, 'upload'])
     ->name('courses.lessons.upload');
+
+Route::post('/courses/{course}/lessons/{lesson}/material/{material}', [LessonController::class, 'deleteFile'])
+    ->name('courses.lessons.deleteFile');
 
 Route::resource('courses.lessons', LessonController::class);
 

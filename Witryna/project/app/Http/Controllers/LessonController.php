@@ -7,6 +7,7 @@ use App\Models\Course;
 use App\Models\LessonMaterial;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Collection;
@@ -124,6 +125,9 @@ class LessonController extends Controller
      */
     public function destroy(Course $course, Lesson $lesson)
     {
+        foreach($lesson->lessonMaterials() as $materials){
+            $materials->delete();
+        }
         $dirToDelete = "/public/course_".$course->id."/lesson_".$lesson->id;
         Storage::deleteDirectory($dirToDelete);
         $lesson->delete();
@@ -190,8 +194,20 @@ class LessonController extends Controller
         $materials->lesson_id = $lesson->id;
         $materials->path = "storage".$pathToFile."/".$fileName;
         $materials->file_name = $fileName;
+
         $materials->save();
 
+        //$path = "storage".$pathToFile."/".$fileName;
+        //$materials = LessonMaterial::firstOrCreate(['lesson_id' =>  $lesson->id, 'path' => $path, 'file_name' =>$fileName  ]);
+
+        return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
+    }
+
+    public function deleteFile( Course $course, Lesson $lesson, LessonMaterial $material)
+    {
+        $file = public_path()."/storage/course_".$course->id."/lesson_".$lesson->id."/".$material->file_name;
+        $material->delete();
+        unlink($file);
         return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
     }
 }
