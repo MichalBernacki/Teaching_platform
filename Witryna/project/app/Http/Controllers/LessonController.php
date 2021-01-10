@@ -189,16 +189,16 @@ class LessonController extends Controller
 
         $file->storeAs("public".$pathToFile, $fileName);
 
-        $materials = new LessonMaterial();
+        //$materials = new LessonMaterial();
 
-        $materials->lesson_id = $lesson->id;
-        $materials->path = "storage".$pathToFile."/".$fileName;
-        $materials->file_name = $fileName;
+        //$materials->lesson_id = $lesson->id;
+        //$materials->path = "storage".$pathToFile."/".$fileName;
+        //$materials->file_name = $fileName;
 
-        $materials->save();
+        //$materials->save();
 
-        //$path = "storage".$pathToFile."/".$fileName;
-        //$materials = LessonMaterial::firstOrCreate(['lesson_id' =>  $lesson->id, 'path' => $path, 'file_name' =>$fileName  ]);
+        $path = "storage".$pathToFile."/".$fileName;
+        $materials = LessonMaterial::firstOrCreate(['lesson_id' =>  $lesson->id, 'path' => $path, 'file_name' =>$fileName  ]);
 
         return view('courses.lessons.show')->withCourse($course)->withLesson($lesson);
     }

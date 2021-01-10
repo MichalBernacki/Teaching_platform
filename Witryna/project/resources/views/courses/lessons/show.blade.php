@@ -37,29 +37,25 @@
 
         @endcan('lecturer')
 
-        <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-
-            @forelse($lesson->lessonMaterials as $material)
+          @forelse($lesson->lessonMaterials as $material)
+            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 <a href='{{ asset($material->path) }}'>{{ $material->file_name }}</a>
                 @can('lecturer')
-                 <form method="POST" action="{{route('courses.lessons.deleteFile',  ['course' => $course, 'lesson' => $lesson, 'material' => $material ])}}">
-                     @csrf
-                    <x-button class="ml-4">
-                        {{ __('Delete file') }}
-                    </x-button>
-                </form>
+                    <form method="POST" action="{{route('courses.lessons.deleteFile',  ['course' => $course, 'lesson' => $lesson, 'material' => $material ])}}">
+                        @csrf
+                        <x-button >
+                            {{ __('Delete file') }}
+                        </x-button>
+                    </form>
                 @endcan('lecturer')
-                <br/>
+            </div>
             @empty
                     <p>Lack of lesson materials</p>
             @endforelse
 
-        </div>
+
 
     </div>
 
 </x-app-layout>
-
-
-
 
