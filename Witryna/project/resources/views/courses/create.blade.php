@@ -38,7 +38,7 @@
                     <label class="label" for="description">Describe your  course</label>
 
                     <div class="control">
-                        <input class="input {{ $errors->has('description') ? 'is-danger' : '' }} text-black" type="text" name="description" id="description" value="{{ old('description') }}">
+                        <textarea class="form-textarea {{ $errors->has('description') ? 'is-danger' : '' }} text-black"  rows="6" name="description" id="description" value="{{ old('description') }}"></textarea>
 
                         @if($errors->has('description'))
                             <li class="help is-danger">{{ $errors->first('description') }}</li>
