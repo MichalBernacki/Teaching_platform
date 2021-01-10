@@ -42,8 +42,17 @@ $I->seeInDatabase("lesson_materials", ["file_name" => "unit.suite.yml"]);
 $I->click('Upload file');
 $I->see('The file field is required.');
 
+$I->click('Delete');
+$I->dontSeeInDatabase("lesson_materials", ["file_name" => "unit.suite.yml"]);
+
+$I->attachFile('file', '../acceptance.suite.yml');
+$I->click('Upload file');
+$I->seeCurrentUrlEquals('/courses/2/lessons/3');
+$I->see('acceptance.suite.yml');
+$I->seeInDatabase("lesson_materials", ["file_name" => "acceptance.suite.yml"]);
+
 $I->amOnPage('/courses/2/lessons');
 
 $I->click('Delete');
 $I->seeCurrentUrlEquals('/courses/2/lessons');
-$I->dontSeeInDatabase("lesson_materials", ["file_name" => "unit.suite.yml"]);
+$I->dontSeeInDatabase("lesson_materials", ["file_name" => "acceptance.suite.yml"]);
