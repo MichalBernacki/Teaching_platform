@@ -11,7 +11,7 @@
                 <h2 class="text-lg font-semibold m-4">Your courses</h2>
 
                 <div class="flex items-center justify-start mt-4 px-4 pb-5">
-                    <form method="get"  action="{{route('courses.mine')}}">
+                    <form method="get" action="{{route('courses.mine')}}">
                         <x-button class="ml-4">
                             {{ __('My courses') }}
                         </x-button>
@@ -20,7 +20,6 @@
             </div>
         </div>
     </div>
-
 
 
     <div class="py-12 bg-gradient-to-r from-green-400 to-blue-500">
@@ -42,6 +41,10 @@
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Description
                             </th>
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Lecturer
+                            </th>
                             <th scope="col" class="relative px-6 py-3">
                                 <span class="sr-only">Enter</span>
                             </th>
@@ -53,28 +56,50 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                         @foreach($courses as $course)
                             <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-500">{{$course->name}}</div>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900 font-bold	">{{$course->name}}</div>
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <div class="text-sm text-gray-900">{{ $course->description }}</div>
+                                <td class="px-6 py-4 ">
+                                    <div class="text-sm text-gray-900 ">{{ $course->description }}</div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="text-sm text-gray-900">{{ $course->lecturer->name}}</div>
                                 </td>
                                 @can('enter-course',$course)
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{route('courses.lessons.index', $course)}}"
-                                       class="text-indigo-600 hover:text-indigo-900">Details</a>
-                                </td>
+                                    <td class="px-6 py-4 text-right text-sm font-medium">
+                                        <a href="{{route('courses.lessons.index', $course)}}"
+                                           class="text-indigo-600 hover:text-indigo-900">Details</a>
+                                    </td>
+
+{{--                                    Znaczy, ze juz jest zapisany i nie moze się zapisać--}}
+                                    @can('student')
+                                        <td class="px-6 py-4 text-right text-sm font-medium">
+                                            <p class="text-gray-300">Already joined</p>
+                                        </td>
+                                    @endcan
+                                    @can('lecturer')
+                                        <td class="px-6 py-4 text-right text-sm font-medium">
+                                            <p class="text-gray-300">Your course</p>
+                                        </td>
+                                    @endcan
                                 @endcan
                                 @cannot('enter-course',$course)
-                                    <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        Details
+                                    <td class="px-6 py-4 text-right text-sm font-medium">
+                                        <p class="text-gray-300">Details</p>
                                     </td>
-                                @endcan
-                                @can('student')
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <a href="{{route('courses.join', $course)}}"
-                                       class="text-indigo-600 hover:text-indigo-900">Join course</a>
-                                </td>
+
+                                    @can('student')
+                                        <td class="px-6 py-4 text-right text-sm font-medium">
+                                            <a href="{{route('courses.join', $course)}}"
+                                               class="text-indigo-600 hover:text-indigo-900">Join course</a>
+                                        </td>
+                                    @endcan
+
+                                    @can('lecturer')
+                                        <td class="px-6 py-4 text-right text-sm font-medium">
+                                            <p class="text-gray-300">Can't access</p>
+                                        </td>
+                                    @endcan
                                 @endcan
                             </tr>
                         @endforeach
