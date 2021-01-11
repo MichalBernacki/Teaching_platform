@@ -14,8 +14,7 @@ $I->seeInDatabase("users", ["name" => "John Doe","role_id"=>"1"]);
 $I->click('Change Role');
 $I->seeCurrentUrlEquals('/users/1/edit');
 
+$I->click('Change', 'button');
 
-$I->click('Change');
-
-$I->amOnPage('/users');
+$I->seeCurrentUrlEquals('/users');
 $I->seeInDatabase("users", ["name" => "John Doe","role_id"=>"2"]);

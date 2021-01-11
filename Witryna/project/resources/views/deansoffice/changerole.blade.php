@@ -41,8 +41,10 @@
                                 <div class="text-sm text-gray-500">{{$user->role->name}}</div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <form method="POST" action="update">
+                                <form method="POST" action="{{route('users.update',$user->id)}}">
                                     @csrf
+                                    @method('PUT')
+
                                     <select class="w-52 border bg-white rounded px-3 py-2 outline-none" name="opt">
                                         <option value='2'>Student</option>
                                         <option value='3'>Lecturer</option>
