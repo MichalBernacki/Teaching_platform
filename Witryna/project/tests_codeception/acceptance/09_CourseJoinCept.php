@@ -16,7 +16,7 @@ $I->seeCurrentUrlEquals('/courses/1/join');
 $I->see('Successfully joined the course');
 
 $I->amOnPage('/courses');
-$I->click('Join');
+$I->amOnPage('/courses/1/join');
 $I->seeCurrentUrlEquals('/courses/1/join');
 $I->see('Already joined this course');
 
