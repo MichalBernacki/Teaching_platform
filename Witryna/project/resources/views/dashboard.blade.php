@@ -14,7 +14,7 @@
 
                     <div class="flex rounded-lg">
                         <div class="flex-1 flex justify-center flex-wrap container bg-gradient-to-r from-green-400 to-blue-500 rounded-l-lg">
-                            <div class="flex justify-center align-middle object-center self-center m-4 p-5 w-max bg-gradient-to-r from-blue-500 to-green-400 rounded-lg">
+                            <div class="flex justify-center align-middle object-center self-center m-4 p-5 w-max opacity-100">
                                 <form method="get" action="{{route('courses.index')}}">
                                     <x-button class="m-4 object-center align-middle self-center">
                                         {{ __('View courses') }}

@@ -39,6 +39,6 @@ Route::resource('courses.lessons', LessonController::class);
 
 Route::get('/courses/{course}/lessons/{lesson}/presence', [LessonController::class, 'presence'])->middleware('can:give-plusesandpresence,course')
     ->name('courses.lessons.presence');
-Route::post('/courses/{course}lessons/{lesson}/save',[LessonController::class, 'save'])->name('courses.lessons.save');;
+Route::post('/courses/{course}/lessons/{lesson}/save',[LessonController::class, 'save'])->name('courses.lessons.save');;
 
 Route::resource('courses.lessons.dates', LessonDatesController::class);

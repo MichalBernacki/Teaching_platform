@@ -159,7 +159,9 @@ class LessonController extends Controller
     }
     public function presence(Course $course,Lesson $lesson)
     {
-        return view('courses.lessons.presence')->withCourse($course)->withLesson($lesson);
+        $lessonTime=$lesson->lessonTimes->first();
+
+        return view('courses.lessons.presence')->withCourse($course)->withLesson($lesson)->withLessonTime($lessonTime);
     }
     public function save(Request $request,Course $course,Lesson $lesson)
     {
@@ -168,9 +170,9 @@ class LessonController extends Controller
         {
             $pluses = 0;
             if(request('presence'.$user->id) == 1 ){
-                $pluses = request('presence'.$user->id);
+                $pluses = request('pluses'.$user->id);
             }
-            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>$pluses,'pluses'=>request('pluses'.$user->id)]);
+            \DB::table('lesson_time_user')->where([['user_id','=',$user->id],['lesson_time_id','=',$lessonTimes->id]])->updateOrInsert(['user_id'=>$user->id,'lesson_time_id'=>$lessonTimes->id],['presence'=>request('presence'.$user->id),'pluses'=>$pluses]);
         }
         return redirect()->route('courses.lessons.show',[$course,$lesson]);
     }

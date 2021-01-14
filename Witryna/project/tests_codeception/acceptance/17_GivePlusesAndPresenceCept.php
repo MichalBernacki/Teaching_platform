@@ -24,4 +24,17 @@ $I->click("Apply");
 $I->see("Presence and pluses");
 $I->seeCurrentUrlEquals('/courses/1/lessons/1');
 
-$I->seeInDatabase('lesson_time_user',["lesson_time_id"=>1,"user_id"=>1,"presence"=>0,"pluses"=>5]);
+$I->seeInDatabase('lesson_time_user',["lesson_time_id"=>1,"user_id"=>1,"presence"=>0,"pluses"=>0]);
+$I->click('Presence and pluses');
+
+$I->seeCurrentUrlEquals('/courses/1/lessons/1/presence');
+
+$I->selectOption("pluses1","5");
+$I->selectOption("presence1","1");
+
+$I->click("Apply");
+
+$I->see("Presence and pluses");
+$I->seeCurrentUrlEquals('/courses/1/lessons/1');
+
+$I->seeInDatabase('lesson_time_user',["lesson_time_id"=>1,"user_id"=>1,"presence"=>1,"pluses"=>5]);
