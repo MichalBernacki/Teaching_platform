@@ -19,12 +19,13 @@ require __DIR__.'/courses.php';
 require __DIR__.'/users.php';
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('dashboard');
+})->middleware(['auth'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
+
 
 require __DIR__.'/auth.php';
 

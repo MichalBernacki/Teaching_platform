@@ -3,8 +3,6 @@
 $I = new AcceptanceTester($scenario ?? null);
 $I->wantTo("Change password");
 
-session_start();
-
 //login
 $I->amOnPage('/dashboard');
 $I->seeCurrentUrlEquals('/login');
