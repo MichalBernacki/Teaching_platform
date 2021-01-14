@@ -205,6 +205,7 @@ class LessonController extends Controller
 
     public function deleteFile( Course $course, Lesson $lesson, LessonMaterial $material)
     {
+        //$file = public_path()."/storage/course_".$course->id."/lesson_".$lesson->id."/".$material->file_name;
         $file = storage_path()."/app/public/course_".$course->id."/lesson_".$lesson->id."/".$material->file_name;
         $material->delete();
         unlink($file);
