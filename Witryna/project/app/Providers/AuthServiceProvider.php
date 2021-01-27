@@ -63,7 +63,7 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('enter-course', function($user, Course $course)
         {
-            $matchThese = ['user_id'=>$user->id,'course_id'=>$course->id];
+            $matchThese = ['user_id'=>$user->id,'confirmed'=>true, 'course_id'=>$course->id];
             if( ($user->id == $course->lecturer_id) || CourseUser::where($matchThese)->exists())
                 return true;
             return false;
