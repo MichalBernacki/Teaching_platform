@@ -52,5 +52,12 @@
                 </x-button>
             </div>
         </form>
+
+        @auth
+            @else
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-50 underline">Register</a>
+                @endif
+        @endauth
     </x-auth-card>
 </x-guest-layout>
